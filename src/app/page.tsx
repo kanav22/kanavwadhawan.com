@@ -21,11 +21,11 @@ export const metadata: Metadata = generatePageMetadata({
   path: "",
 })
 
-// Screenshots for the hero device mockup
+// Screenshots for the hero device mockup (proper mobile aspect ratio)
 const heroScreenshots = [
-  { src: "/projects/angel-one.svg", alt: "Angel One Trading App" },
-  { src: "/projects/paytm.svg", alt: "Paytm Mobile Banking" },
-  { src: "/projects/indmoney.svg", alt: "INDmoney Personal Finance" },
+  { src: "/screenshots/angel-one-screen.svg", alt: "Angel One Trading App" },
+  { src: "/screenshots/paytm-screen.svg", alt: "Paytm Mobile Banking" },
+  { src: "/screenshots/indmoney-screen.svg", alt: "INDmoney Personal Finance" },
 ]
 
 export default function HomePage() {
