@@ -8,13 +8,15 @@ import type { Project } from "@/data/projects"
 
 interface CaseStudyCardProps {
   project: Project
+  /** Set true for above-the-fold cards to improve LCP (e.g. first 3 on homepage). */
+  priority?: boolean
 }
 
 /**
  * Case study card for key roles - architectural challenge, leadership, technical stack.
  * Senior/lead positioning with structured sections.
  */
-export function CaseStudyCard({ project }: CaseStudyCardProps) {
+export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps) {
   const architecturalChallenge = project.challenges?.[0] ?? project.description
   const leadershipImpact = project.team
     ? `${project.team}. ${project.results?.[0] ?? project.impact}`
@@ -24,12 +26,14 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
   return (
     <Card className="group flex flex-col overflow-hidden border-border/50 bg-card/50 transition-all duration-300 hover:border-border hover:bg-card hover:shadow-lg">
       {/* Header with image */}
-      <Link href={`/projects/${project.slug}`} className="block">
+      <Link href={`/projects/${project.slug}`} className="block min-h-[48px]">
         <div className="relative aspect-[16/10] overflow-hidden bg-muted">
           <Image
             src={project.image}
             alt={project.title}
             fill
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
@@ -120,10 +124,10 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
         <Button
           asChild
           variant="ghost"
-          size="sm"
-          className="h-9 gap-1.5 text-sm font-medium transition-colors hover:bg-accent"
+          size="touch"
+          className="w-full sm:w-auto justify-center sm:justify-start gap-1.5 text-sm font-medium transition-colors hover:bg-accent"
         >
-          <Link href={`/projects/${project.slug}`}>
+          <Link href={`/projects/${project.slug}`} className="min-h-[48px] flex items-center">
             Read case study
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </Link>

@@ -21,9 +21,9 @@ export const experiences: Experience[] = [
     endDate: "Present",
     description: "Leading development of financial technology SDKs for mobile platforms.",
     highlights: [
-      "Built Android and React Native SDKs that reduced client integration time from weeks to days, enabling faster go-to-market for fintech startups",
-      "Delivered proof-of-concept implementations that validated 3 new product features, accelerating roadmap decisions",
-      "Refactored core SDK architecture to improve maintainability, reducing bug resolution time by 50%"
+      "Built Android and React Native SDKs with a unified API for third-party fintech apps, reducing client integration time from weeks to 2–3 days and enabling faster go-to-market for multiple startups.",
+      "Delivered proof-of-concept implementations for new product features, validating 3 roadmap items and accelerating stakeholder decisions.",
+      "Refactored core SDK architecture with PCI-DSS–aligned secure storage and error handling, cutting bug resolution time by 50% and improving maintainability."
     ]
   },
   {
@@ -36,9 +36,9 @@ export const experiences: Experience[] = [
     endDate: "2024",
     description: "Managed a global team building mobile payment solutions.",
     highlights: [
-      "Led 10 mobile engineers across time zones, establishing code review standards that reduced production bugs by 35%",
-      "Implemented test automation strategy (unit + UI tests) that increased code coverage from 40% to 85%, improving app stability",
-      "Built CI/CD pipelines with Jenkins and Fastlane that cut deployment time by 40%, enabling weekly releases"
+      "Led a team of 10 mobile engineers across time zones for Paytm UK's payment and account features, establishing code review standards that reduced production bugs by 35%.",
+      "Implemented test automation (unit + UI) across the mobile stack, increasing code coverage from 40% to 85% and improving app stability for 500K+ active users.",
+      "Built CI/CD pipelines with Jenkins and Fastlane with automated test gates and staged rollouts, cutting deployment time by 40% and enabling weekly releases."
     ]
   },
   {
@@ -51,9 +51,9 @@ export const experiences: Experience[] = [
     endDate: "2021",
     description: "Led engineering teams for India's leading stock trading platform.",
     highlights: [
-      "Managed team of engineering managers overseeing 25+ engineers, delivering trading features used by millions of investors",
-      "Drove engineering best practices adoption that reduced average bug fix time from 5 days to 2 days",
-      "Owned P&L-critical product lines, maintaining zero trading outages during market hours"
+      "Managed engineering managers and 25+ engineers for real-time trading and portfolio features, delivering capabilities used by millions of investors with zero trading outages during market hours.",
+      "Drove adoption of engineering best practices (code reviews, test automation, modular architecture), reducing average bug fix time from 5 days to 2 days.",
+      "Owned P&L-critical product lines processing 1M+ daily transactions, maintaining zero trading outages and sub-100ms order placement latency."
     ]
   },
   {
@@ -66,9 +66,9 @@ export const experiences: Experience[] = [
     endDate: "2020",
     description: "Architected and scaled the Android application for personal finance management.",
     highlights: [
-      "Designed scalable module-based architecture that supported 10x user growth without performance degradation",
-      "Implemented memory optimization techniques that reduced app crash rate from 2% to under 0.1%",
-      "Built automated testing framework with JUnit and Espresso, achieving 80% code coverage"
+      "Designed module-based architecture for aggregation across 50+ institutions, supporting 10x user growth to 2M+ downloads without performance degradation.",
+      "Implemented memory and stability optimizations across the Android app, reducing crash rate from 2% to under 0.1% and maintaining a 4.5+ Play Store rating.",
+      "Built automated testing with JUnit and Espresso for core flows, achieving 80% code coverage and faster, safer releases."
     ]
   },
   {
@@ -81,9 +81,9 @@ export const experiences: Experience[] = [
     endDate: "2018",
     description: "Developed enterprise mobile applications for Fortune 500 healthcare clients.",
     highlights: [
-      "Recognized as top 5% performer (Job Band A) among 200,000+ employees for consistently exceeding delivery targets",
-      "Architected Aetna Insurance mobile app features that reduced claims processing time by 60% for millions of users",
-      "Established CI/CD pipeline using Jenkins that reduced release preparation time from 3 days to 4 hours"
+      "Recognized as top 5% performer (Job Band A) among 200,000+ employees for consistently exceeding delivery targets on enterprise mobile projects.",
+      "Architected Aetna mobile features for claims submission and provider search, reducing claims processing time by 60% for millions of policyholders.",
+      "Established CI/CD with Jenkins for enterprise release workflows, cutting release preparation from 3 days to 4 hours."
     ]
   }
 ]

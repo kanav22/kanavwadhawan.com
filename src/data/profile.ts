@@ -1,6 +1,11 @@
+export interface ExpertiseItem {
+  name: string
+  value: string
+}
+
 export interface ExpertiseCategory {
   title: string
-  items: string[]
+  items: (string | ExpertiseItem)[]
 }
 
 export interface Profile {
@@ -76,7 +81,7 @@ export const profile: Profile = {
   country: "GB",
   
   // About (short bio for homepage - 3-5 lines)
-  about: "I'm a hands-on engineering leader passionate about mobile technology. With over a decade of experience shipping Android, iOS, and React Native apps, I've led teams at fintech companies like Paytm and Angel One, and built SDKs used by thousands of developers. I thrive at the intersection of technical excellence and product thinking.",
+  about: "I'm a hands-on engineering leader passionate about mobile technology. With over a decade of experience shipping Android, iOS, and React Native apps, I've led teams at fintech companies like Paytm and Angel One, and built SDKs used by thousands of developers. I drive cross-functional collaboration with Product and Design, focus on engineering process optimization, and mentor engineers from junior to senior level. I thrive at the intersection of technical excellence and product thinking.",
   
   // Proof chips (social proof shown in hero section)
   proofChips: [
@@ -125,30 +130,46 @@ export const profile: Profile = {
     { value: "10+", label: "Years experience" },
   ],
   
-  // Expertise categories (professional grouping)
+  // Expertise categories (skill + business value for "So What?" factor)
   expertiseCategories: [
     {
       title: "Core Architecture",
-      items: ["Clean Architecture", "MVI/MVVM", "Modularization", "Dagger/Hilt"],
+      items: [
+        { name: "Clean Architecture", value: "scalable, testable codebases" },
+        { name: "MVI/MVVM", value: "predictable state and faster feature delivery" },
+        { name: "Modularization", value: "parallel teams and faster builds" },
+        { name: "Dagger/Hilt", value: "testable dependencies and maintainability" },
+      ],
     },
     {
       title: "Fintech & Security",
-      items: ["Biometrics", "Secure Storage", "Encryption", "Payment Gateways"],
+      items: [
+        { name: "Biometrics", value: "secure, low-friction auth" },
+        { name: "Secure Storage", value: "PCI-DSS and compliance readiness" },
+        { name: "Encryption", value: "data protection at rest and in transit" },
+        { name: "Payment Gateways", value: "reliable checkout and reconciliation" },
+      ],
     },
     {
       title: "Leadership",
-      items: ["Team Mentorship", "Agile/Scrum", "CI/CD Pipelines", "Product Strategy"],
+      items: [
+        { name: "Team Mentorship", value: "junior-to-senior growth" },
+        { name: "Agile/Scrum", value: "predictable delivery and visibility" },
+        { name: "CI/CD Pipelines", value: "shorter release cycles and quality gates" },
+        { name: "Product Strategy", value: "alignment and impact-focused roadmaps" },
+      ],
     },
   ],
   
   // Leadership highlights (real metrics from experience)
   leadershipHighlights: [
-    "Led teams of 10-25+ engineers across multiple time zones, establishing code review standards that reduced production bugs by 35%",
+    "Led teams of 10–25+ engineers across multiple time zones, establishing code review standards that reduced production bugs by 35%",
     "Built CI/CD pipelines with Jenkins and Fastlane that cut deployment cycles from 2 weeks to 2 days, enabling weekly releases",
     "Implemented test automation strategies increasing code coverage from 40% to 85%, reducing app crash rates to under 0.1%",
     "Owned P&L-critical product lines, maintaining zero trading outages during market hours while processing 1M+ daily transactions",
-    "Mentored junior and mid-level engineers through structured code reviews, pair programming, and architecture design sessions",
-    "Drove cross-functional collaboration with product, design, and backend teams to deliver features used by millions of users",
+    "Mentoring junior-to-senior engineers through structured code reviews, pair programming, and architecture design sessions",
+    "Cross-functional collaboration with Product, Design, and Backend—driving alignment and features used by millions of users",
+    "Engineering process optimization: standardized CI/CD, test gates, and release workflows across mobile teams",
   ],
   
   // Job Info (for structured data)

@@ -6,7 +6,7 @@ import { profile } from "@/data/profile"
 const socialLinks = [
   {
     href: profile.github,
-    label: "GitHub",
+    label: "View Architectural Samples & Open Source Contributions",
     icon: Github,
     external: true,
   },
@@ -46,7 +46,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="min-h-[44px] flex items-center text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm sm:min-h-0"
+                className="min-h-[48px] min-w-[48px] flex items-center justify-center py-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm sm:min-h-0 sm:min-w-0 sm:justify-start"
               >
                 {link.label}
               </Link>
@@ -61,7 +61,7 @@ export function Footer() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="h-11 w-11 flex items-center justify-center rounded-lg text-muted-foreground transition-colors duration-200 hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-10 sm:w-10"
+                className="min-h-[48px] min-w-[48px] flex items-center justify-center rounded-lg text-muted-foreground transition-colors duration-200 hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[44px] sm:min-w-[44px]"
                 aria-label={link.label}
               >
                 <link.icon className="h-5 w-5 sm:h-4 sm:w-4" aria-hidden="true" />

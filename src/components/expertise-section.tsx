@@ -5,12 +5,16 @@ import { ChevronDown, Layers, Shield, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { ExpertiseCategory } from "@/data/profile"
+import type { ExpertiseCategory, ExpertiseItem } from "@/data/profile"
 
 const categoryIcons = {
   "Core Architecture": Layers,
   "Fintech & Security": Shield,
   "Leadership": Users,
+}
+
+function isExpertiseItem(item: string | ExpertiseItem): item is ExpertiseItem {
+  return typeof item === "object" && item !== null && "name" in item && "value" in item
 }
 
 interface ExpertiseCategoryBlockProps {
@@ -40,23 +44,34 @@ function ExpertiseCategoryBlock({
           {category.title}
         </h3>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {visibleItems.map((item) => (
-          <Badge
-            key={item}
-            variant="secondary"
-            className="rounded-md px-2.5 py-1 text-xs font-medium transition-colors sm:px-3 sm:py-1.5 sm:text-sm"
-          >
-            {item}
-          </Badge>
-        ))}
+      <div className="flex flex-col gap-2 sm:flex-wrap sm:flex-row sm:gap-x-4 sm:gap-y-2">
+        {visibleItems.map((item) => {
+          const key = isExpertiseItem(item) ? item.name : item
+          const label = isExpertiseItem(item) ? item.name : item
+          const value = isExpertiseItem(item) ? item.value : null
+          return (
+            <div key={key} className="flex flex-col gap-0.5 sm:max-w-[16rem]">
+              <Badge
+                variant="secondary"
+                className="w-fit rounded-md px-2.5 py-1 text-xs font-medium transition-colors sm:px-3 sm:py-1.5 sm:text-sm"
+              >
+                {label}
+              </Badge>
+              {value && (
+                <span className="text-[10px] leading-tight text-muted-foreground sm:text-xs">
+                  {value}
+                </span>
+              )}
+            </div>
+          )
+        })}
       </div>
       {hasMore && (
         <Button
           variant="ghost"
-          size="sm"
+          size="touch"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-3 h-8 gap-1 px-2 text-xs text-muted-foreground transition-colors hover:text-foreground sm:mt-4"
+          className="mt-3 w-full sm:w-auto justify-center sm:justify-start gap-1 px-2 text-xs text-muted-foreground transition-colors hover:text-foreground sm:mt-4 sm:min-h-0 sm:min-w-0 sm:h-8"
         >
           {isExpanded ? "Show less" : `Show ${category.items.length - defaultVisible} more`}
           <ChevronDown

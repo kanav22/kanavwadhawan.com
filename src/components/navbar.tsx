@@ -54,7 +54,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                  "relative min-h-[48px] flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                   pathname === link.href
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -90,8 +90,8 @@ export function Navbar() {
               <SheetTrigger asChild>
                 <Button 
                   variant="ghost" 
-                  size="icon" 
-                  className="h-11 w-11 shrink-0 rounded-lg" 
+                  size="icon-lg" 
+                  className="shrink-0 rounded-lg" 
                   aria-label="Open menu"
                 >
                   <Menu className="h-5 w-5" />
@@ -107,8 +107,8 @@ export function Navbar() {
                   <SheetClose asChild>
                     <Button 
                       variant="ghost" 
-                      size="icon" 
-                      className="h-10 w-10 rounded-lg"
+                      size="icon-lg" 
+                      className="rounded-lg"
                       aria-label="Close menu"
                     >
                       <X className="h-5 w-5" />
@@ -122,7 +122,7 @@ export function Navbar() {
                       <Link
                         href={link.href}
                         className={cn(
-                          "flex h-12 items-center rounded-lg px-4 text-base font-medium transition-colors duration-200",
+                          "flex min-h-[48px] items-center rounded-lg px-4 text-base font-medium transition-colors duration-200",
                           pathname === link.href
                             ? "bg-accent text-foreground"
                             : "text-muted-foreground hover:bg-accent hover:text-foreground"
@@ -136,7 +136,7 @@ export function Navbar() {
                   {/* Mobile CTA */}
                   <div className="mt-6 pt-6 border-t border-border/40">
                     <SheetClose asChild>
-                      <Button asChild className="w-full h-12 text-base rounded-lg">
+                      <Button asChild size="touch" className="w-full min-h-[48px] text-base rounded-lg">
                         <a href={`mailto:${profile.email}`} aria-label="Email me">
                           <Mail className="mr-2 h-5 w-5" />
                           Email me

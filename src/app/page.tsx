@@ -8,6 +8,7 @@ import { CaseStudyCard } from "@/components/case-study-card"
 import { ExperienceCard } from "@/components/experience-card"
 import { LeadershipSection } from "@/components/leadership-section"
 import { ExpertiseSection } from "@/components/expertise-section"
+import { FeaturedTechnicalDeepDive } from "@/components/featured-technical-deep-dive"
 import { ImpactStats } from "@/components/impact-stats"
 import { HomePageJsonLd } from "@/components/json-ld"
 import { generatePageMetadata } from "@/lib/metadata"
@@ -45,24 +46,24 @@ export default function HomePage() {
               
               {/* CTAs - Stack on mobile, row on sm+ */}
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
-                <Button asChild size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
+                <Button asChild size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
                   <a href={`mailto:${profile.email}`}>
                     <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
                     Get in touch
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
+                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
                   <a
                     href={profile.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="View GitHub profile"
+                    aria-label="View Architectural Samples & Open Source Contributions"
                   >
                     <Github className="mr-2 h-5 w-5" aria-hidden="true" />
-                    GitHub
+                    Architectural Samples & Open Source
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
+                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
                   <a href={profile.resumeUrl} download>
                     <Download className="mr-2 h-5 w-5" aria-hidden="true" />
                     Resume
@@ -125,8 +126,12 @@ export default function HomePage() {
           
           {/* Case study cards - 1 col mobile, 2 cols md, 3 cols lg */}
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {caseStudies.map((project) => (
-              <CaseStudyCard key={project.id} project={project} />
+            {caseStudies.map((project, index) => (
+              <CaseStudyCard
+                key={project.id}
+                project={project}
+                priority={index < 3}
+              />
             ))}
           </div>
           
@@ -140,6 +145,9 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Featured Technical Deep Dive — Architecture showcase */}
+      <FeaturedTechnicalDeepDive />
 
       {/* Leadership Section - Key for EM positioning */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24">
@@ -191,13 +199,13 @@ export default function HomePage() {
             
             {/* CTAs - Stack on mobile */}
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
+              <Button asChild size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
                 <a href={`mailto:${profile.email}`}>
                   <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
                   Send me an email
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
+              <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
                 <a
                   href={profile.linkedinUrl}
                   target="_blank"
