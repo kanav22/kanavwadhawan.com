@@ -136,9 +136,17 @@
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Smooth scrolling - respect user preferences */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Focus visible styles for accessibility */
@@ -154,6 +162,16 @@ html {
 
 .dark ::selection {
   background-color: oklch(0.95 0 0 / 0.12);
+}
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* Premium transitions */
@@ -173,22 +191,36 @@ html {
   transform: translateY(-2px);
 }
 
-/* Section spacing scale - consistent rhythm */
+/* Mobile-first section spacing */
 .section-spacing {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 @media (min-width: 640px) {
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .section-spacing {
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .section-spacing {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

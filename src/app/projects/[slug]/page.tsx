@@ -71,59 +71,64 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         }}
       />
 
-      <article className="py-16 sm:py-20">
+      <article className="py-8 sm:py-12 md:py-16 lg:py-20">
         <Container>
-          {/* Back link */}
+          {/* Back link - Always visible */}
           <Link 
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6 sm:mb-8 min-h-[44px] sm:min-h-0"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to projects
           </Link>
 
           {/* Header */}
-          <header className="mb-12">
-            <div className="flex flex-wrap gap-2 mb-4">
+          <header className="mb-8 sm:mb-12">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 mb-3 sm:gap-2 sm:mb-4">
               {project.tags.map((tag) => (
                 <Badge 
                   key={tag} 
                   variant="secondary"
-                  className="rounded-md px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide"
+                  className="rounded-md px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide sm:text-xs"
                 >
                   {tag}
                 </Badge>
               ))}
             </div>
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl mb-4">
+            
+            {/* Title */}
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl mb-3 sm:mb-4">
               {project.title}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl">
+            
+            {/* Description */}
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg max-w-3xl">
               {project.longDescription}
             </p>
 
-            {/* Meta info */}
-            <div className="flex flex-wrap gap-6 mt-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4" />
+            {/* Meta info - Stack on mobile */}
+            <div className="flex flex-col gap-2 mt-4 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2 sm:mt-6">
+              <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
+                <Briefcase className="h-4 w-4 shrink-0" />
                 <span>{project.role}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
+              <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
+                <Calendar className="h-4 w-4 shrink-0" />
                 <span>{project.duration}</span>
               </div>
               {project.team && (
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
+                <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
+                  <Users className="h-4 w-4 shrink-0" />
                   <span>{project.team}</span>
                 </div>
               )}
             </div>
 
-            {/* Action buttons */}
-            <div className="flex flex-wrap gap-3 mt-8">
+            {/* Action buttons - Stack on mobile */}
+            <div className="flex flex-col gap-3 mt-6 sm:flex-row sm:mt-8">
               {project.liveUrl && (
-                <Button asChild>
+                <Button asChild className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
                   <a 
                     href={project.liveUrl} 
                     target="_blank" 
@@ -135,7 +140,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </Button>
               )}
               {project.githubUrl && (
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
                   <a 
                     href={project.githubUrl} 
                     target="_blank" 
@@ -149,29 +154,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </header>
 
-          {/* Hero image */}
-          <div className="relative aspect-video overflow-hidden rounded-xl bg-muted mb-16">
+          {/* Hero image - Responsive aspect ratio */}
+          <div className="relative aspect-video overflow-hidden rounded-lg bg-muted mb-10 sm:rounded-xl sm:mb-12 md:mb-16">
             <Image
               src={project.image}
               alt={project.title}
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
             />
           </div>
 
           {/* Tech stack */}
-          <section className="mb-16">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+          <section className="mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 sm:mb-4">
               Tech Stack
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {project.stack.map((tech) => (
                 <Badge 
                   key={tech} 
                   variant="outline"
-                  className="rounded-md px-3 py-1 text-sm"
+                  className="rounded-md px-2 py-1 text-xs sm:px-3 sm:text-sm"
                 >
                   {tech}
                 </Badge>
@@ -180,58 +185,58 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </section>
 
           {/* Key Challenges */}
-          <section className="mb-16">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+          <section className="mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground mb-4 sm:text-xl sm:mb-6">
               Key Challenges
             </h2>
             <ul className="space-y-3">
               {project.challenges.map((challenge, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
-                  <span className="text-muted-foreground">{challenge}</span>
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500 sm:mt-2" />
+                  <span className="text-sm leading-relaxed text-muted-foreground sm:text-base">{challenge}</span>
                 </li>
               ))}
             </ul>
           </section>
 
           {/* Solutions */}
-          <section className="mb-16">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+          <section className="mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground mb-4 sm:text-xl sm:mb-6">
               What I Built
             </h2>
             <ul className="space-y-3">
               {project.solutions.map((solution, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
-                  <span className="text-muted-foreground">{solution}</span>
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 sm:mt-2" />
+                  <span className="text-sm leading-relaxed text-muted-foreground sm:text-base">{solution}</span>
                 </li>
               ))}
             </ul>
           </section>
 
-          {/* Results */}
-          <section className="mb-16">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+          {/* Results - Responsive grid */}
+          <section className="mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground mb-4 sm:text-xl sm:mb-6">
               Results & Impact
             </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {project.results.map((result, i) => (
                 <Card key={i} className="bg-muted/30 border-border/50">
                   <CardContent className="p-4">
-                    <p className="text-sm font-medium text-foreground">{result}</p>
+                    <p className="text-sm font-medium text-foreground leading-relaxed">{result}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </section>
 
-          {/* Screenshots placeholder */}
+          {/* Screenshots - Responsive grid with proper sizing */}
           {project.screenshots && project.screenshots.length > 0 && (
-            <section className="mb-16">
-              <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+            <section className="mb-10 sm:mb-12 md:mb-16">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground mb-4 sm:text-xl sm:mb-6">
                 Screenshots
               </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                 {project.screenshots.map((screenshot, i) => (
                   <div key={i} className="relative aspect-video overflow-hidden rounded-lg bg-muted">
                     <Image
@@ -239,7 +244,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       alt={`${project.title} screenshot ${i + 1}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
                     />
                   </div>
                 ))}
@@ -247,32 +252,32 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
           )}
 
-          {/* Navigation */}
-          <nav className="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-border/50">
+          {/* Navigation - Stack on mobile */}
+          <nav className="flex flex-col gap-4 pt-6 border-t border-border/50 sm:flex-row sm:justify-between sm:pt-8">
             {previousProject ? (
               <Link
                 href={`/projects/${previousProject.slug}`}
-                className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+                className="group flex items-center gap-3 p-3 -m-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors min-h-[60px]"
               >
-                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                <div className="text-left">
-                  <p className="text-xs uppercase tracking-wide">Previous</p>
-                  <p className="text-sm font-medium text-foreground">{previousProject.title}</p>
+                <ArrowLeft className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-x-1 sm:h-4 sm:w-4" />
+                <div className="text-left min-w-0">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Previous</p>
+                  <p className="text-sm font-medium text-foreground truncate">{previousProject.title}</p>
                 </div>
               </Link>
             ) : (
-              <div />
+              <div className="hidden sm:block" />
             )}
             {nextProject && (
               <Link
                 href={`/projects/${nextProject.slug}`}
-                className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors sm:text-right"
+                className="group flex items-center gap-3 p-3 -m-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors min-h-[60px] sm:text-right"
               >
-                <div>
-                  <p className="text-xs uppercase tracking-wide">Next</p>
-                  <p className="text-sm font-medium text-foreground">{nextProject.title}</p>
+                <div className="min-w-0 sm:order-1">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Next</p>
+                  <p className="text-sm font-medium text-foreground truncate">{nextProject.title}</p>
                 </div>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4 sm:order-2" />
               </Link>
             )}
           </nav>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Search } from "lucide-react"
+import { Search, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
@@ -10,9 +10,6 @@ import { ProjectCard } from "@/components/project-card"
 import { JsonLd } from "@/components/json-ld"
 import { profile } from "@/data/profile"
 import { projects, allTags } from "@/data/projects"
-
-// Note: metadata must be in a separate file for client components
-// See projects/metadata.ts or use generateMetadata in a server component wrapper
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -35,6 +32,8 @@ export default function ProjectsPage() {
     })
   }, [searchQuery, selectedTag])
 
+  const hasActiveFilters = searchQuery !== "" || selectedTag !== null
+
   return (
     <>
       {/* JSON-LD for Projects page */}
@@ -47,35 +46,44 @@ export default function ProjectsPage() {
         }}
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <Container>
           <SectionHeading
             title="Projects"
             subtitle="A collection of work throughout my career"
           />
 
-          {/* Filters */}
-          <div className="mb-10 space-y-5">
-            {/* Search */}
-            <div className="relative max-w-sm">
+          {/* Filters - Stack on mobile */}
+          <div className="mb-8 space-y-4 sm:mb-10">
+            {/* Search - Full width on mobile */}
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
               <Input
                 type="search"
                 placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-10 rounded-lg border-border/60 bg-background pl-10 text-sm placeholder:text-muted-foreground/50"
+                className="h-12 w-full rounded-lg border-border/60 bg-background pl-10 pr-10 text-base placeholder:text-muted-foreground/50 sm:h-10 sm:max-w-sm sm:text-sm"
                 aria-label="Search projects"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground"
+                  aria-label="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </div>
 
-            {/* Tag Filters */}
+            {/* Tag Filters - Wrap on mobile */}
             <div className="flex flex-wrap gap-2">
               <Button
                 variant={selectedTag === null ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedTag(null)}
-                className="h-8 rounded-lg px-3 text-xs font-medium"
+                className="h-10 rounded-lg px-4 text-sm font-medium sm:h-8 sm:px-3 sm:text-xs"
               >
                 All
               </Button>
@@ -85,7 +93,7 @@ export default function ProjectsPage() {
                   variant={selectedTag === tag ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedTag(tag)}
-                  className="h-8 rounded-lg border-border/60 px-3 text-xs font-medium"
+                  className="h-10 rounded-lg border-border/60 px-4 text-sm font-medium sm:h-8 sm:px-3 sm:text-xs"
                 >
                   {tag}
                 </Button>
@@ -94,32 +102,34 @@ export default function ProjectsPage() {
           </div>
 
           {/* Results count */}
-          <p className="mb-8 text-sm text-muted-foreground/80">
+          <p className="mb-6 text-sm text-muted-foreground/80 sm:mb-8">
             {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
           </p>
 
-          {/* Projects Grid */}
+          {/* Projects Grid - 1 col mobile, 2 col sm, 3 col lg */}
           {filteredProjects.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           ) : (
-            <div className="py-16 text-center">
+            <div className="py-12 text-center sm:py-16">
               <p className="text-muted-foreground">
                 No projects found.
               </p>
-              <Button
-                variant="link"
-                onClick={() => {
-                  setSearchQuery("")
-                  setSelectedTag(null)
-                }}
-                className="mt-2 text-sm"
-              >
-                Clear filters
-              </Button>
+              {hasActiveFilters && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchQuery("")
+                    setSelectedTag(null)
+                  }}
+                  className="mt-4 h-10 rounded-lg"
+                >
+                  Clear filters
+                </Button>
+              )}
             </div>
           )}
         </Container>
