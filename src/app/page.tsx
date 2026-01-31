@@ -4,13 +4,14 @@ import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
 import { SectionHeading } from "@/components/section-heading"
-import { ProjectCard } from "@/components/project-card"
+import { CaseStudyCard } from "@/components/case-study-card"
 import { ExperienceCard } from "@/components/experience-card"
 import { LeadershipSection } from "@/components/leadership-section"
-import { SkillsSection } from "@/components/skills-section"
+import { ExpertiseSection } from "@/components/expertise-section"
+import { ImpactStats } from "@/components/impact-stats"
 import { HomePageJsonLd } from "@/components/json-ld"
 import { generatePageMetadata } from "@/lib/metadata"
-import { profile, skills } from "@/data/profile"
+import { profile } from "@/data/profile"
 import { projects } from "@/data/projects"
 import { experiences } from "@/data/experience"
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default function HomePage() {
-  const featuredProjects = projects.filter((p) => p.featured)
+  const caseStudies = projects.filter((p) => p.featured)
 
   return (
     <>
@@ -74,7 +75,7 @@ export default function HomePage() {
                 {profile.proofChips.map((chip) => (
                   <span
                     key={chip}
-                    className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm"
+                    className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary transition-colors sm:text-sm"
                   >
                     {chip}
                   </span>
@@ -84,8 +85,15 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* About Section */}
+      {/* Impact Stats */}
       <section className="border-t border-border/40 py-12 sm:py-16 md:py-20">
+        <Container>
+          <ImpactStats stats={profile.impactStats} />
+        </Container>
+      </section>
+
+      {/* About Section */}
+      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20">
         <Container>
           <div className="max-w-3xl">
             <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-4">
@@ -98,13 +106,13 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Featured Projects */}
-      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20 lg:py-24">
+      {/* Case Studies */}
+      <section className="border-t border-border/40 py-12 sm:py-16 md:py-20 lg:py-24">
         <Container>
           <div className="mb-8 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
-              title="Featured Projects"
-              subtitle="Mobile apps that power millions of users"
+              title="Case Studies"
+              subtitle="Key roles: architectural challenges, leadership impact, and technical outcomes"
               className="mb-0"
             />
             <Button asChild variant="ghost" size="sm" className="hidden h-10 shrink-0 gap-1.5 sm:flex">
@@ -115,18 +123,17 @@ export default function HomePage() {
             </Button>
           </div>
           
-          {/* Grid: 1 col mobile, 2 cols sm, 3 cols lg */}
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+          {/* Case study cards - 1 col mobile, 2 cols md, 3 cols lg */}
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {caseStudies.map((project) => (
+              <CaseStudyCard key={project.id} project={project} />
             ))}
           </div>
           
-          {/* Mobile view all button */}
           <div className="mt-8 sm:hidden">
             <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base">
               <Link href="/projects">
-                View all projects
+                View all case studies
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Link>
             </Button>
@@ -160,14 +167,14 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Skills */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      {/* Expertise */}
+      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20 lg:py-24">
         <Container>
           <SectionHeading
-            title="Skills"
-            subtitle="Technologies I work with"
+            title="Expertise"
+            subtitle="Core architecture, fintech security, and leadership"
           />
-          <SkillsSection skills={skills} />
+          <ExpertiseSection categories={profile.expertiseCategories} />
         </Container>
       </section>
 

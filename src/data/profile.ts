@@ -1,3 +1,8 @@
+export interface ExpertiseCategory {
+  title: string
+  items: string[]
+}
+
 export interface Profile {
   // Personal Info
   name: string
@@ -38,6 +43,12 @@ export interface Profile {
   // Leadership highlights (for Leadership section)
   leadershipHighlights: string[]
   
+  // Impact stats (for hero/stats section)
+  impactStats: { value: string; label: string }[]
+  
+  // Expertise categories (professional grouping)
+  expertiseCategories: ExpertiseCategory[]
+  
   // Job Info (for structured data)
   jobTitle: string
   worksFor: {
@@ -57,8 +68,8 @@ export const profile: Profile = {
   name: "Kanav Wadhawan",
   firstName: "Kanav",
   lastName: "Wadhawan",
-  title: "Software Engineering Manager",
-  tagline: "Building exceptional mobile experiences that scale. 10+ years leading teams and shipping products used by millions.",
+  title: "Mobile Engineering Leader & Fintech Architect",
+  tagline: "10+ years architecting scalable systems for millions of users at companies like Paytm, Weavr, and Angel One. Leading mobile teams and building fintech products that ship.",
   email: "Kwadhawan.business@outlook.com",
   phone: "+44 7749 706240",
   location: "United Kingdom",
@@ -69,10 +80,10 @@ export const profile: Profile = {
   
   // Proof chips (social proof shown in hero section)
   proofChips: [
-    "1M+ daily transactions",
-    "2M+ app downloads",
+    "10M+ users impacted",
+    "4.5+ Play Store rating",
+    "30% build time improvement",
     "10+ years experience",
-    "500K+ users served",
   ],
   
   // Social Links
@@ -88,22 +99,46 @@ export const profile: Profile = {
   ogImage: "/og.png",
   
   // SEO & Bio
-  bio: "Accomplished software engineering manager with a proven track record of improving operational efficiency, employee productivity, product reliability, and user experiences. I excel in leading complex mobile development projects, consistently meeting tight timelines while maintaining high quality standards.",
-  shortBio: "Software Engineering Manager with 10+ years building mobile apps and leading high-performing teams. Specializing in Android, iOS, and React Native.",
+  bio: "Mobile Engineering Leader and Fintech Architect with 10+ years of experience architecting scalable systems for millions of users. I excel in leading complex mobile development projects, driving architectural decisions, and building high-performing teams at companies like Paytm, Weavr, and Angel One.",
+  shortBio: "Mobile Engineering Leader & Fintech Architect with 10+ years architecting scalable systems for millions of users. Specializing in Android, iOS, and React Native.",
   
   // Keywords for SEO
   keywords: [
-    "Software Engineer",
+    "Mobile Engineering Leader",
+    "Fintech Architect",
     "Engineering Manager",
-    "Mobile Developer",
-    "Android Developer",
-    "iOS Developer",
-    "React Native Developer",
+    "Mobile Tech Lead",
+    "Android Architect",
+    "Fintech Mobile",
     "Kotlin",
     "Swift",
-    "Mobile Engineering Lead",
+    "React Native",
     "UK Software Engineer",
     "Kanav Wadhawan",
+  ],
+  
+  // Impact stats
+  impactStats: [
+    { value: "10M+", label: "Users impacted" },
+    { value: "4.5+", label: "Play Store rating" },
+    { value: "30%", label: "Build time improvement" },
+    { value: "10+", label: "Years experience" },
+  ],
+  
+  // Expertise categories (professional grouping)
+  expertiseCategories: [
+    {
+      title: "Core Architecture",
+      items: ["Clean Architecture", "MVI/MVVM", "Modularization", "Dagger/Hilt"],
+    },
+    {
+      title: "Fintech & Security",
+      items: ["Biometrics", "Secure Storage", "Encryption", "Payment Gateways"],
+    },
+    {
+      title: "Leadership",
+      items: ["Team Mentorship", "Agile/Scrum", "CI/CD Pipelines", "Product Strategy"],
+    },
   ],
   
   // Leadership highlights (real metrics from experience)
@@ -117,7 +152,7 @@ export const profile: Profile = {
   ],
   
   // Job Info (for structured data)
-  jobTitle: "Senior Mobile Engineer",
+  jobTitle: "Mobile Engineering Leader & Fintech Architect",
   worksFor: {
     name: "Weavr.io",
     url: "https://weavr.io",

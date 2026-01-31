@@ -154,7 +154,7 @@ export const projects: Project[] = [
     image: "/projects/indmoney.svg",
     tags: ["Mobile", "Personal Finance", "FinTech"],
     stack: ["Android", "Kotlin", "Room", "Retrofit"],
-    featured: false,
+    featured: true,
     platform: ["Android", "iOS"],
     role: "Lead Android Developer",
     duration: "2019 - 2020",
