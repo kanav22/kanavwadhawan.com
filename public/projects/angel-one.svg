@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" fill="none">
+  <rect width="400" height="225" fill="#0d1117"/>
+  <path d="M80 160 L120 100 L160 130 L200 80 L240 110 L280 60 L320 90" stroke="#22c55e" stroke-width="3" fill="none"/>
+  <circle cx="120" cy="100" r="4" fill="#22c55e"/>
+  <circle cx="160" cy="130" r="4" fill="#22c55e"/>
+  <circle cx="200" cy="80" r="4" fill="#22c55e"/>
+  <circle cx="240" cy="110" r="4" fill="#22c55e"/>
+  <circle cx="280" cy="60" r="4" fill="#22c55e"/>
+  <circle cx="320" cy="90" r="4" fill="#22c55e"/>
+  <text x="200" y="200" font-family="system-ui" font-size="16" fill="#94a3b8" text-anchor="middle">Angel One Trading</text>
+</svg>

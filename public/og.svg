@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="60" y="60" width="1080" height="510" rx="16" fill="#171717"/>
+  <text x="100" y="200" font-family="system-ui" font-size="72" font-weight="bold" fill="white">Kanav Wadhawan</text>
+  <text x="100" y="280" font-family="system-ui" font-size="36" fill="#a3a3a3">Software Engineering Manager</text>
+  <text x="100" y="360" font-family="system-ui" font-size="24" fill="#737373">Building exceptional mobile experiences that scale.</text>
+  <text x="100" y="400" font-family="system-ui" font-size="24" fill="#737373">10+ years leading teams and shipping products used by millions.</text>
+  <rect x="100" y="480" width="200" height="50" rx="8" fill="white"/>
+  <text x="200" y="513" font-family="system-ui" font-size="18" font-weight="500" fill="#0a0a0a" text-anchor="middle">Get in touch</text>
+</svg>
