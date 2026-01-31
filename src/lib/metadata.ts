@@ -9,7 +9,7 @@ export const siteConfig = {
   name: profile.name,
   title: `${profile.name} | ${profile.title}`,
   description: profile.shortBio,
-  url: profile.website,
+  url: profile.website, // Should include www for canonical
   ogImage: profile.ogImage,
   links: {
     github: profile.github,
@@ -82,6 +82,7 @@ export function generatePageMetadata({
 /**
  * Default metadata for the root layout.
  * Includes comprehensive SEO configuration.
+ * Canonical URL uses www subdomain.
  */
 export const rootMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -140,6 +141,9 @@ export const rootMetadata: Metadata = {
     apple: [
       { url: "/apple-icon.svg", type: "image/svg+xml" },
     ],
+  },
+  alternates: {
+    canonical: siteConfig.url,
   },
   verification: {
     // Add your verification codes here

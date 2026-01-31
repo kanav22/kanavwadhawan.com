@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Download, Linkedin, Briefcase, GraduationCap } from "lucide-react"
+import { Download, Linkedin, Briefcase, GraduationCap, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Container } from "@/components/container"
@@ -49,23 +49,29 @@ export default function ResumePage() {
                 Professional background and qualifications
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild className="h-10 rounded-lg px-4">
-                <a href={profile.resumeUrl} download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Download PDF
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="h-10 rounded-lg px-4">
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="mr-2 h-4 w-4" />
-                  LinkedIn
-                </a>
-              </Button>
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-wrap gap-3">
+                <Button asChild className="h-10 rounded-lg px-4">
+                  <a href={profile.resumeUrl} download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="h-10 rounded-lg px-4">
+                  <a
+                    href={profile.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Linkedin className="mr-2 h-4 w-4" />
+                    LinkedIn
+                  </a>
+                </Button>
+              </div>
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Calendar className="h-3 w-3" />
+                Last updated: {profile.resumeLastUpdated}
+              </p>
             </div>
           </div>
 
@@ -243,6 +249,9 @@ export default function ResumePage() {
                 Download Resume
               </a>
             </Button>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Last updated: {profile.resumeLastUpdated}
+            </p>
           </div>
         </Container>
       </section>

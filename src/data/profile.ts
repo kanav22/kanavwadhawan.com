@@ -10,6 +10,9 @@ export interface Profile {
   location: string
   country: string
   
+  // About (short bio for homepage)
+  about: string
+  
   // Social Links
   linkedin: string
   github: string
@@ -18,6 +21,7 @@ export interface Profile {
   // Website
   website: string
   resumeUrl: string
+  resumeLastUpdated: string // e.g., "January 2026"
   ogImage: string
   
   // SEO & Bio
@@ -53,15 +57,19 @@ export const profile: Profile = {
   location: "United Kingdom",
   country: "GB",
   
-  // Social Links
-  linkedin: "https://linkedin.com/in/kanav-wadhawan",
-  github: "https://github.com/kanavwadhawan",
-  twitter: undefined, // Add your Twitter/X handle if you have one
+  // About (short bio for homepage - 3-5 lines)
+  about: "I'm a hands-on engineering leader passionate about mobile technology. With over a decade of experience shipping Android, iOS, and React Native apps, I've led teams at fintech companies like Paytm and Angel One, and built SDKs used by thousands of developers. I thrive at the intersection of technical excellence and product thinking.",
   
-  // Website
-  website: "https://kanavwadhawan.com",
+  // Social Links - UPDATE THESE WITH YOUR ACTUAL URLS
+  linkedin: "https://www.linkedin.com/in/kanav-wadhawan",
+  github: "https://github.com/kanav22",
+  twitter: undefined, // Add your Twitter/X handle if you have one: "https://twitter.com/yourhandle"
+  
+  // Website - Using www subdomain as canonical
+  website: "https://www.kanavwadhawan.com",
   resumeUrl: "/resume.pdf",
-  ogImage: "/og.svg",
+  resumeLastUpdated: "January 2026", // UPDATE THIS when you update your resume
+  ogImage: "/og.png",
   
   // SEO & Bio
   bio: "Accomplished software engineering manager with a proven track record of improving operational efficiency, employee productivity, product reliability, and user experiences. I excel in leading complex mobile development projects, consistently meeting tight timelines while maintaining high quality standards.",

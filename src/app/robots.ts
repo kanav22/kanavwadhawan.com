@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next"
 import { profile } from "@/data/profile"
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = profile.website // Uses www subdomain
+
   return {
     rules: [
       {
@@ -10,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: `${profile.website}/sitemap.xml`,
-    host: profile.website,
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   }
 }

@@ -8,16 +8,19 @@ const socialLinks = [
     href: profile.github,
     label: "GitHub",
     icon: Github,
+    external: true,
   },
   {
     href: profile.linkedin,
     label: "LinkedIn",
     icon: Linkedin,
+    external: true,
   },
   {
     href: `mailto:${profile.email}`,
     label: "Email",
     icon: Mail,
+    external: false,
   },
 ]
 
@@ -40,7 +43,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
               >
                 {link.label}
               </Link>
@@ -53,12 +56,12 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                className="rounded-lg p-2.5 text-muted-foreground transition-colors duration-200 hover:bg-accent hover:text-foreground"
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="rounded-lg p-2.5 text-muted-foreground transition-colors duration-200 hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 aria-label={link.label}
               >
-                <link.icon className="h-4 w-4" />
+                <link.icon className="h-4 w-4" aria-hidden="true" />
               </a>
             ))}
           </div>

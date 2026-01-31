@@ -74,6 +74,20 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* About Section */}
+      <section className="border-t border-border/40 py-16 sm:py-20">
+        <Container>
+          <div className="max-w-3xl">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+              About
+            </h2>
+            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-relaxed">
+              {profile.about}
+            </p>
+          </div>
+        </Container>
+      </section>
+
       {/* Featured Projects */}
       <section className="border-t border-border/40 bg-muted/30 py-20 sm:py-24">
         <Container>

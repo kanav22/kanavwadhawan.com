@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next"
 import { profile } from "@/data/profile"
+import { projects } from "@/data/projects"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = profile.website
+  const baseUrl = profile.website // Uses www subdomain
 
-  return [
+  // Static pages
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -24,4 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
   ]
+
+  // Dynamic project pages
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...projectPages]
 }
