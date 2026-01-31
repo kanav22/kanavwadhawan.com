@@ -365,45 +365,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </section>
 
-          {/* Screenshots - Responsive grid with proper sizing and placeholder fallback */}
-          <section className="mb-10 sm:mb-12 md:mb-16">
-            <h2 className="mb-4 text-lg font-semibold tracking-tight text-foreground sm:mb-6 sm:text-xl">
-              Screenshots
-            </h2>
-            {project.screenshots && project.screenshots.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-                {project.screenshots.map((screenshot, i) => (
-                  <div key={i} className="relative aspect-video overflow-hidden rounded-lg bg-muted">
-                    <Image
-                      src={screenshot}
-                      alt={`${project.title} screenshot ${i + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              /* Placeholder when no screenshots */
-              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-                {[1, 2].map((i) => (
-                  <div 
-                    key={i} 
-                    className="relative flex aspect-video items-center justify-center overflow-hidden rounded-lg bg-muted/50 border border-dashed border-border/50"
-                  >
-                    <div className="text-center">
-                      <Smartphone className="mx-auto h-8 w-8 text-muted-foreground/40" aria-hidden="true" />
-                      <p className="mt-2 text-sm text-muted-foreground/60">
-                        {project.title} screenshot
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
-
           {/* Navigation - Stack on mobile */}
           <nav className="flex flex-col gap-4 border-t border-border/50 pt-6 sm:flex-row sm:justify-between sm:pt-8" aria-label="Project navigation">
             {previousProject ? (

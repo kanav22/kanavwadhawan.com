@@ -6,7 +6,6 @@ import { Container } from "@/components/container"
 import { SectionHeading } from "@/components/section-heading"
 import { ProjectCard } from "@/components/project-card"
 import { ExperienceCard } from "@/components/experience-card"
-import { HeroVisual } from "@/components/hero-visual"
 import { LeadershipSection } from "@/components/leadership-section"
 import { SkillsSection } from "@/components/skills-section"
 import { HomePageJsonLd } from "@/components/json-ld"
@@ -21,13 +20,6 @@ export const metadata: Metadata = generatePageMetadata({
   path: "",
 })
 
-// Screenshots for the hero device mockup (proper mobile aspect ratio)
-const heroScreenshots = [
-  { src: "/screenshots/angel-one-screen.svg", alt: "Angel One Trading App" },
-  { src: "/screenshots/paytm-screen.svg", alt: "Paytm Mobile Banking" },
-  { src: "/screenshots/indmoney-screen.svg", alt: "INDmoney Personal Finance" },
-]
-
 export default function HomePage() {
   const featuredProjects = projects.filter((p) => p.featured)
 
@@ -36,12 +28,10 @@ export default function HomePage() {
       {/* JSON-LD Structured Data */}
       <HomePageJsonLd />
 
-      {/* Hero Section - Mobile engineering focused */}
+      {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28">
         <Container>
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-            {/* Hero Text */}
-            <div className="max-w-2xl lg:max-w-xl">
+          <div className="max-w-2xl">
               <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
                 {profile.name}
               </h1>
@@ -91,12 +81,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-
-            {/* Hero Visual - Device mockup */}
-            <div className="flex justify-center lg:justify-end">
-              <HeroVisual screenshots={heroScreenshots} />
-            </div>
-          </div>
         </Container>
       </section>
 
