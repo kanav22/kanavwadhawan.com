@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 interface HeroVisualProps {
@@ -44,7 +43,7 @@ export function HeroVisual({ screenshots, className }: HeroVisualProps) {
           <div className="absolute left-1/2 top-0 z-10 h-5 w-20 -translate-x-1/2 rounded-b-xl bg-gray-800 dark:bg-gray-700 sm:h-6 sm:w-24 lg:h-7 lg:w-28" />
           
           {/* Screen */}
-          <div className="relative aspect-[9/19.5] overflow-hidden rounded-[24px] bg-gray-900 sm:rounded-[26px] lg:rounded-[28px]">
+          <div className="relative aspect-[9/19.5] overflow-hidden rounded-[24px] bg-[#0f172a] sm:rounded-[26px] lg:rounded-[28px]">
             {/* Screenshot carousel */}
             {screenshots.map((screenshot, index) => (
               <div
@@ -54,19 +53,14 @@ export function HeroVisual({ screenshots, className }: HeroVisualProps) {
                   index === currentIndex ? "opacity-100" : "opacity-0"
                 )}
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={screenshot.src}
                   alt={screenshot.alt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 640px) 200px, (max-width: 1024px) 220px, 260px"
-                  priority={index === 0}
+                  className="h-full w-full"
                 />
               </div>
             ))}
-            
-            {/* Fallback gradient if no image loads */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600" />
           </div>
         </div>
         
