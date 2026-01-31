@@ -172,7 +172,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="border-t border-border/40 bg-muted/30 py-16 sm:py-20 md:py-24 lg:py-32">
+      <section id="contact" className="border-t border-border/40 bg-muted/30 py-16 sm:py-20 md:py-24 lg:py-32">
         <Container size="narrow">
           <div className="text-center">
             <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl">
@@ -192,7 +192,7 @@ export default function HomePage() {
               </Button>
               <Button asChild variant="outline" size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
                 <a
-                  href={profile.linkedin}
+                  href={profile.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View LinkedIn profile"

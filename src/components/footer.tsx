@@ -11,7 +11,7 @@ const socialLinks = [
     external: true,
   },
   {
-    href: profile.linkedin,
+    href: profile.linkedinUrl,
     label: "LinkedIn",
     icon: Linkedin,
     external: true,

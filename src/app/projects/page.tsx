@@ -69,7 +69,7 @@ export default function ProjectsPage() {
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground"
+                  className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   aria-label="Clear search"
                 >
                   <X className="h-4 w-4" />
@@ -77,13 +77,13 @@ export default function ProjectsPage() {
               )}
             </div>
 
-            {/* Tag Filters - Wrap on mobile */}
-            <div className="flex flex-wrap gap-2">
+            {/* Tag Filters - Wrap on mobile, scroll on very small screens */}
+            <div className="-mx-4 flex min-w-0 gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <Button
                 variant={selectedTag === null ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedTag(null)}
-                className="h-10 rounded-lg px-4 text-sm font-medium sm:h-8 sm:px-3 sm:text-xs"
+                className="h-11 shrink-0 rounded-lg px-4 text-sm font-medium sm:h-9 sm:px-3 sm:text-xs min-h-[44px]"
               >
                 All
               </Button>
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
                   variant={selectedTag === tag ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedTag(tag)}
-                  className="h-10 rounded-lg border-border/60 px-4 text-sm font-medium sm:h-8 sm:px-3 sm:text-xs"
+                  className="h-11 shrink-0 rounded-lg border-border/60 px-4 text-sm font-medium sm:h-9 sm:px-3 sm:text-xs min-h-[44px]"
                 >
                   {tag}
                 </Button>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Container } from "@/components/container"
 import { ProfilePageJsonLd, JsonLd } from "@/components/json-ld"
+import { SkillsSection } from "@/components/skills-section"
 import { generatePageMetadata } from "@/lib/metadata"
 import { profile, skills } from "@/data/profile"
 import { experiences, education } from "@/data/experience"
@@ -61,11 +62,12 @@ export default function ResumePage() {
                 </Button>
                 <Button asChild variant="outline" className="h-12 w-full rounded-lg px-4 text-base sm:h-10 sm:w-auto sm:text-sm">
                   <a
-                    href={profile.linkedin}
+                    href={profile.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View LinkedIn profile"
                   >
-                    <Linkedin className="mr-2 h-5 w-5 sm:h-4 sm:w-4" />
+                    <Linkedin className="mr-2 h-5 w-5 sm:h-4 sm:w-4" aria-hidden="true" />
                     LinkedIn
                   </a>
                 </Button>
@@ -156,85 +158,12 @@ export default function ResumePage() {
             </div>
           </div>
 
-          {/* Skills - Responsive grid */}
+          {/* Skills - Badge chips with Show more */}
           <div className="mb-10 sm:mb-12 md:mb-16">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-6 sm:mb-8">
               Technical Skills
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10">
-              <div>
-                <h3 className="mb-2 text-sm font-medium text-foreground/80 sm:mb-3">
-                  Languages
-                </h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {skills
-                    .filter((s) => s.category === "languages")
-                    .map((skill) => (
-                      <Badge 
-                        key={skill.name} 
-                        variant="secondary"
-                        className="rounded-md px-2 py-1 text-xs font-normal sm:px-2.5 sm:text-sm"
-                      >
-                        {skill.name}
-                      </Badge>
-                    ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="mb-2 text-sm font-medium text-foreground/80 sm:mb-3">
-                  Frameworks
-                </h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {skills
-                    .filter((s) => s.category === "frameworks")
-                    .map((skill) => (
-                      <Badge 
-                        key={skill.name} 
-                        variant="secondary"
-                        className="rounded-md px-2 py-1 text-xs font-normal sm:px-2.5 sm:text-sm"
-                      >
-                        {skill.name}
-                      </Badge>
-                    ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="mb-2 text-sm font-medium text-foreground/80 sm:mb-3">
-                  Tools
-                </h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {skills
-                    .filter((s) => s.category === "tools")
-                    .map((skill) => (
-                      <Badge 
-                        key={skill.name} 
-                        variant="secondary"
-                        className="rounded-md px-2 py-1 text-xs font-normal sm:px-2.5 sm:text-sm"
-                      >
-                        {skill.name}
-                      </Badge>
-                    ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="mb-2 text-sm font-medium text-foreground/80 sm:mb-3">
-                  Cloud & Services
-                </h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {skills
-                    .filter((s) => s.category === "cloud")
-                    .map((skill) => (
-                      <Badge 
-                        key={skill.name} 
-                        variant="secondary"
-                        className="rounded-md px-2 py-1 text-xs font-normal sm:px-2.5 sm:text-sm"
-                      >
-                        {skill.name}
-                      </Badge>
-                    ))}
-                </div>
-              </div>
-            </div>
+            <SkillsSection skills={skills} />
           </div>
 
           {/* Download CTA */}

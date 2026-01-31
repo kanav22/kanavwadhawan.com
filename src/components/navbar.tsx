@@ -22,6 +22,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/resume", label: "Resume" },
+  { href: "/#contact", label: "Contact" },
 ]
 
 /**
@@ -75,7 +76,7 @@ export function Navbar() {
               size="sm" 
               className="ml-1 h-9 rounded-lg px-4 text-sm font-medium"
             >
-              <a href={`mailto:${profile.email}`}>
+              <a href={`mailto:${profile.email}`} aria-label="Email me">
                 <Mail className="mr-2 h-4 w-4" />
                 Email me
               </a>
@@ -136,7 +137,7 @@ export function Navbar() {
                   <div className="mt-6 pt-6 border-t border-border/40">
                     <SheetClose asChild>
                       <Button asChild className="w-full h-12 text-base rounded-lg">
-                        <a href={`mailto:${profile.email}`}>
+                        <a href={`mailto:${profile.email}`} aria-label="Email me">
                           <Mail className="mr-2 h-5 w-5" />
                           Email me
                         </a>

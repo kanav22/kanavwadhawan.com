@@ -58,7 +58,7 @@ function getPersonSchema() {
     telephone: profile.phone,
     image: `${profile.website}${profile.ogImage}`,
     sameAs: [
-      profile.linkedin,
+      profile.linkedinUrl,
       profile.github,
       profile.twitter,
     ].filter(Boolean),

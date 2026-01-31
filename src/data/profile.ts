@@ -18,6 +18,7 @@ export interface Profile {
   
   // Social Links
   linkedin: string
+  linkedinUrl: string // Canonical - use this for all LinkedIn links
   github: string
   twitter?: string
   
@@ -76,6 +77,7 @@ export const profile: Profile = {
   
   // Social Links
   linkedin: "https://www.linkedin.com/in/kanav-wadhawan/",
+  linkedinUrl: "https://www.linkedin.com/in/kanav-wadhawan/",
   github: "https://github.com/kanav22",
   twitter: undefined,
   

@@ -13,7 +13,7 @@ export const siteConfig = {
   ogImage: profile.ogImage,
   links: {
     github: profile.github,
-    linkedin: profile.linkedin,
+    linkedin: profile.linkedinUrl,
     twitter: profile.twitter,
   },
 }
