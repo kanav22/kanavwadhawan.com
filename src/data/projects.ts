@@ -11,6 +11,12 @@ export interface Project {
   liveUrl?: string
   githubUrl?: string
   featured: boolean
+  // Company info
+  company: string
+  companyLogo?: string // Path to logo, e.g., "/logos/weavr.svg"
+  // App store links
+  googlePlayUrl?: string
+  appStoreUrl?: string
   // Extended fields for detail page
   role: string
   duration: string
@@ -26,6 +32,8 @@ export const projects: Project[] = [
     id: "weavr-sdk",
     slug: "weavr-sdk",
     title: "Weavr Financial SDK",
+    company: "Weavr.io",
+    companyLogo: "/logos/weavr.svg",
     description: "Cross-platform SDK enabling seamless integration of financial products into mobile applications.",
     longDescription: "Developed a comprehensive SDK that allows third-party applications to integrate banking, payments, and financial management features. The SDK supports both Android and React Native platforms with a unified API, enabling fintech startups to launch compliant financial products in days instead of months.",
     impact: "Reduced client integration time from weeks to days",
@@ -56,6 +64,8 @@ export const projects: Project[] = [
     id: "paytm-mobile",
     slug: "paytm-mobile-banking",
     title: "Paytm Mobile Banking",
+    company: "Paytm",
+    companyLogo: "/logos/paytm.svg",
     description: "Led mobile engineering for one of the UK's leading digital payment platforms.",
     longDescription: "Managed the complete mobile application lifecycle for Paytm's UK operations, including payment processing, account management, and financial services integration. Led a global team of engineers while maintaining hands-on involvement in architecture decisions and code reviews.",
     impact: "Served 500K+ active users with 99.9% uptime",
@@ -86,6 +96,9 @@ export const projects: Project[] = [
     id: "angel-trading",
     slug: "angel-one-trading",
     title: "Angel One Trading App",
+    company: "Angel One",
+    companyLogo: "/logos/angelone.svg",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.msf.angelbrokingapp",
     description: "Real-time stock trading platform serving millions of retail investors in India.",
     longDescription: "Led the mobile engineering team responsible for the core trading experience, including real-time market data, order execution, and portfolio management features. The platform handles millions of transactions daily during peak market hours.",
     impact: "Processed 1M+ daily transactions",
@@ -116,6 +129,9 @@ export const projects: Project[] = [
     id: "indmoney-app",
     slug: "indmoney-personal-finance",
     title: "INDmoney Personal Finance",
+    company: "INDmoney",
+    companyLogo: "/logos/indmoney.svg",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.ind.money",
     description: "All-in-one personal finance app for tracking investments, expenses, and net worth.",
     longDescription: "Architected and led development of the Android application from ground up, implementing module-based architecture for scalability and comprehensive automated testing. The app aggregates financial data from multiple sources to provide unified wealth tracking.",
     impact: "Grew to 2M+ downloads with 4.5★ rating",
@@ -146,6 +162,8 @@ export const projects: Project[] = [
     id: "aetna-health",
     slug: "aetna-health-insurance",
     title: "Aetna Health Insurance",
+    company: "Aetna (via Infosys)",
+    companyLogo: "/logos/aetna.svg",
     description: "Enterprise mobile application for health insurance management and claims processing.",
     longDescription: "Developed core features for Aetna's mobile health insurance platform, including claims submission, provider search, and benefits management for millions of policyholders. Worked on features that significantly improved the claims processing experience.",
     impact: "Reduced claims processing time by 60%",
@@ -176,6 +194,8 @@ export const projects: Project[] = [
     id: "ci-cd-framework",
     slug: "mobile-cicd-framework",
     title: "Mobile CI/CD Framework",
+    company: "Paytm",
+    companyLogo: "/logos/paytm.svg",
     description: "Automated build and deployment pipeline for mobile applications.",
     longDescription: "Designed and implemented a comprehensive CI/CD framework using Jenkins and Fastlane, enabling automated testing, code quality checks, and deployment to app stores. The framework standardized release processes across multiple mobile teams.",
     impact: "Reduced release cycle from 2 weeks to 2 days",

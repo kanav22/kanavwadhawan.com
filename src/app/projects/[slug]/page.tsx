@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Calendar, Users, Briefcase } from "lucide-react"
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Calendar, Users, Briefcase, ExternalLink, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -48,6 +48,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const nextProject = getNextProject(slug)
   const previousProject = getPreviousProject(slug)
+  
+  // Check if there are any external links
+  const hasExternalLinks = project.googlePlayUrl || project.appStoreUrl || project.githubUrl || project.liveUrl
 
   return (
     <>
@@ -78,7 +81,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             href="/projects"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6 sm:mb-8 min-h-[44px] sm:min-h-0"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back to projects
           </Link>
 
@@ -97,10 +100,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
             
-            {/* Title */}
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl mb-3 sm:mb-4">
-              {project.title}
-            </h1>
+            {/* Company logo + Title */}
+            <div className="flex items-start gap-4 mb-3 sm:mb-4">
+              {project.companyLogo && (
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-muted sm:h-14 sm:w-14">
+                  <Image
+                    src={project.companyLogo}
+                    alt={`${project.company} logo`}
+                    fill
+                    className="object-contain p-2"
+                    sizes="56px"
+                  />
+                </div>
+              )}
+              <div className="min-w-0">
+                <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+                  {project.title}
+                </h1>
+                <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1.5">
+                  <Building2 className="h-3.5 w-3.5" aria-hidden="true" />
+                  {project.company}
+                </p>
+              </div>
+            </div>
             
             {/* Description */}
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg max-w-3xl">
@@ -110,48 +132,65 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {/* Meta info - Stack on mobile */}
             <div className="flex flex-col gap-2 mt-4 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2 sm:mt-6">
               <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
-                <Briefcase className="h-4 w-4 shrink-0" />
+                <Briefcase className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{project.role}</span>
               </div>
               <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
-                <Calendar className="h-4 w-4 shrink-0" />
+                <Calendar className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{project.duration}</span>
               </div>
               {project.team && (
                 <div className="flex items-center gap-2 min-h-[44px] sm:min-h-0">
-                  <Users className="h-4 w-4 shrink-0" />
+                  <Users className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>{project.team}</span>
                 </div>
               )}
             </div>
 
             {/* Action buttons - Stack on mobile */}
-            <div className="flex flex-col gap-3 mt-6 sm:flex-row sm:mt-8">
-              {project.liveUrl && (
-                <Button asChild className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
-                  <a 
-                    href={project.liveUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    View Live
-                    <ArrowUpRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              )}
-              {project.githubUrl && (
-                <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
-                  <a 
-                    href={project.githubUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-            </div>
+            {hasExternalLinks && (
+              <div className="flex flex-col gap-3 mt-6 sm:flex-row sm:flex-wrap sm:mt-8">
+                {project.liveUrl && (
+                  <Button asChild className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
+                    <a 
+                      href={project.liveUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} live`}
+                    >
+                      View Live
+                      <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </Button>
+                )}
+                {project.googlePlayUrl && (
+                  <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
+                    <a 
+                      href={project.googlePlayUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} on Google Play`}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
+                      Google Play
+                    </a>
+                  </Button>
+                )}
+                {project.githubUrl && (
+                  <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base sm:h-10 sm:w-auto sm:text-sm">
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} source code on GitHub`}
+                    >
+                      <Github className="mr-2 h-4 w-4" aria-hidden="true" />
+                      View Code
+                    </a>
+                  </Button>
+                )}
+              </div>
+            )}
           </header>
 
           {/* Hero image - Responsive aspect ratio */}
@@ -192,7 +231,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <ul className="space-y-3">
               {project.challenges.map((challenge, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500 sm:mt-2" />
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500 sm:mt-2" aria-hidden="true" />
                   <span className="text-sm leading-relaxed text-muted-foreground sm:text-base">{challenge}</span>
                 </li>
               ))}
@@ -207,7 +246,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <ul className="space-y-3">
               {project.solutions.map((solution, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 sm:mt-2" />
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 sm:mt-2" aria-hidden="true" />
                   <span className="text-sm leading-relaxed text-muted-foreground sm:text-base">{solution}</span>
                 </li>
               ))}
@@ -253,13 +292,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
 
           {/* Navigation - Stack on mobile */}
-          <nav className="flex flex-col gap-4 pt-6 border-t border-border/50 sm:flex-row sm:justify-between sm:pt-8">
+          <nav className="flex flex-col gap-4 pt-6 border-t border-border/50 sm:flex-row sm:justify-between sm:pt-8" aria-label="Project navigation">
             {previousProject ? (
               <Link
                 href={`/projects/${previousProject.slug}`}
                 className="group flex items-center gap-3 p-3 -m-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors min-h-[60px]"
               >
-                <ArrowLeft className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-x-1 sm:h-4 sm:w-4" />
+                <ArrowLeft className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-x-1 sm:h-4 sm:w-4" aria-hidden="true" />
                 <div className="text-left min-w-0">
                   <p className="text-xs uppercase tracking-wide text-muted-foreground">Previous</p>
                   <p className="text-sm font-medium text-foreground truncate">{previousProject.title}</p>
@@ -277,7 +316,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <p className="text-xs uppercase tracking-wide text-muted-foreground">Next</p>
                   <p className="text-sm font-medium text-foreground truncate">{nextProject.title}</p>
                 </div>
-                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4 sm:order-2" />
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4 sm:order-2" aria-hidden="true" />
               </Link>
             )}
           </nav>

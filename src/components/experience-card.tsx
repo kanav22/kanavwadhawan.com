@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import type { Experience } from "@/data/experience"
@@ -7,7 +8,9 @@ interface ExperienceCardProps {
 }
 
 /**
- * Responsive experience card with mobile-optimized layout.
+ * Responsive experience card with company logo.
+ * - Logo displayed inline with company name
+ * - Mobile-optimized layout
  */
 export function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
@@ -17,17 +20,33 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       
       <CardHeader className="pb-3 sm:pb-4 sm:pl-7">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-0.5 sm:space-y-1 min-w-0">
-            <h3 className="text-sm font-semibold leading-tight tracking-tight text-foreground sm:text-base">
-              {experience.role}
-            </h3>
-            <p className="text-sm font-medium text-muted-foreground">
-              {experience.company}
-            </p>
-            <p className="text-xs text-muted-foreground/80">
-              {experience.location}
-            </p>
+          <div className="flex items-start gap-3 min-w-0">
+            {/* Company Logo */}
+            {experience.companyLogo && (
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-muted sm:h-11 sm:w-11">
+                <Image
+                  src={experience.companyLogo}
+                  alt={`${experience.company} logo`}
+                  fill
+                  className="object-contain p-1.5"
+                  sizes="44px"
+                />
+              </div>
+            )}
+            
+            <div className="space-y-0.5 sm:space-y-1 min-w-0">
+              <h3 className="text-sm font-semibold leading-tight tracking-tight text-foreground sm:text-base">
+                {experience.role}
+              </h3>
+              <p className="text-sm font-medium text-muted-foreground">
+                {experience.company}
+              </p>
+              <p className="text-xs text-muted-foreground/80">
+                {experience.location}
+              </p>
+            </div>
           </div>
+          
           <Badge 
             variant="outline" 
             className="w-fit shrink-0 rounded-md border-border/60 px-2 py-0.5 text-[10px] font-normal tabular-nums sm:px-2.5 sm:py-1 sm:text-xs"

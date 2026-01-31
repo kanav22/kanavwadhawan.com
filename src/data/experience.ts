@@ -1,6 +1,7 @@
 export interface Experience {
   id: string
   company: string
+  companyLogo?: string // Path to logo, e.g., "/logos/weavr.svg"
   role: string
   location: string
   startDate: string
@@ -13,6 +14,7 @@ export const experiences: Experience[] = [
   {
     id: "weavr",
     company: "Weavr.io",
+    companyLogo: "/logos/weavr.svg",
     role: "Senior Mobile Engineer",
     location: "United Kingdom",
     startDate: "2024",
@@ -27,6 +29,7 @@ export const experiences: Experience[] = [
   {
     id: "paytm",
     company: "Paytm",
+    companyLogo: "/logos/paytm.svg",
     role: "Mobile Engineering Manager",
     location: "United Kingdom",
     startDate: "2021",
@@ -41,6 +44,7 @@ export const experiences: Experience[] = [
   {
     id: "angelone",
     company: "Angel One",
+    companyLogo: "/logos/angelone.svg",
     role: "Senior Mobile Engineering Manager",
     location: "India",
     startDate: "2020",
@@ -55,6 +59,7 @@ export const experiences: Experience[] = [
   {
     id: "indmoney",
     company: "INDmoney",
+    companyLogo: "/logos/indmoney.svg",
     role: "Lead Android Developer",
     location: "India",
     startDate: "2019",
@@ -69,6 +74,7 @@ export const experiences: Experience[] = [
   {
     id: "infosys",
     company: "Infosys",
+    companyLogo: "/logos/infosys.svg",
     role: "Senior Android Developer",
     location: "India",
     startDate: "2013",

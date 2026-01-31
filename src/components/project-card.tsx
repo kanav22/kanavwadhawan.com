@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, ExternalLink } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,7 @@ interface ProjectCardProps {
 }
 
 /**
- * Responsive project card with mobile-optimized layout.
+ * Responsive project card with company logo and app store links.
  * - Fixed aspect ratio for images
  * - Proper tap targets (44px+)
  * - No horizontal overflow
@@ -47,12 +47,28 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         
-        {/* Title */}
-        <Link href={`/projects/${project.slug}`}>
-          <CardTitle className="text-base font-semibold leading-snug tracking-tight hover:text-foreground/80 transition-colors sm:text-lg">
-            {project.title}
-          </CardTitle>
-        </Link>
+        {/* Company logo + Title */}
+        <div className="flex items-start gap-3">
+          {project.companyLogo && (
+            <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted sm:h-9 sm:w-9">
+              <Image
+                src={project.companyLogo}
+                alt={`${project.company} logo`}
+                fill
+                className="object-contain p-1"
+                sizes="36px"
+              />
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <Link href={`/projects/${project.slug}`}>
+              <CardTitle className="text-base font-semibold leading-snug tracking-tight hover:text-foreground/80 transition-colors sm:text-lg">
+                {project.title}
+              </CardTitle>
+            </Link>
+            <p className="text-xs text-muted-foreground mt-0.5">{project.company}</p>
+          </div>
+        </div>
       </CardHeader>
 
       <CardContent className="flex-1 space-y-2 px-4 pb-3 pt-0 sm:space-y-3 sm:px-5 sm:pb-4">
@@ -87,19 +103,39 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </CardContent>
 
-      {/* Footer with CTA */}
-      <CardFooter className="border-t border-border/50 p-3 sm:p-4">
+      {/* Footer with CTAs */}
+      <CardFooter className="flex flex-wrap gap-2 border-t border-border/50 p-3 sm:p-4">
         <Button 
           asChild 
           variant="ghost" 
           size="sm" 
-          className="h-10 w-full gap-1.5 text-sm font-medium transition-colors hover:bg-accent sm:h-8 sm:w-auto sm:text-xs"
+          className="h-10 flex-1 gap-1.5 text-sm font-medium transition-colors hover:bg-accent sm:h-8 sm:flex-none sm:text-xs"
         >
           <Link href={`/projects/${project.slug}`}>
             View Details
-            <ArrowUpRight className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+            <ArrowUpRight className="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
           </Link>
         </Button>
+        
+        {project.googlePlayUrl && (
+          <Button 
+            asChild 
+            variant="outline" 
+            size="sm" 
+            className="h-10 gap-1.5 text-sm font-medium sm:h-8 sm:text-xs"
+          >
+            <a 
+              href={project.googlePlayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} on Google Play`}
+            >
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="hidden sm:inline">Play Store</span>
+              <span className="sm:hidden">App</span>
+            </a>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   )
