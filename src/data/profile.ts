@@ -34,6 +34,9 @@ export interface Profile {
   // Keywords for SEO
   keywords: string[]
   
+  // Leadership highlights (for Leadership section)
+  leadershipHighlights: string[]
+  
   // Job Info (for structured data)
   jobTitle: string
   worksFor: {
@@ -99,6 +102,16 @@ export const profile: Profile = {
     "Mobile Engineering Lead",
     "UK Software Engineer",
     "Kanav Wadhawan",
+  ],
+  
+  // Leadership highlights (real metrics from experience)
+  leadershipHighlights: [
+    "Led teams of 10-25+ engineers across multiple time zones, establishing code review standards that reduced production bugs by 35%",
+    "Built CI/CD pipelines with Jenkins and Fastlane that cut deployment cycles from 2 weeks to 2 days, enabling weekly releases",
+    "Implemented test automation strategies increasing code coverage from 40% to 85%, reducing app crash rates to under 0.1%",
+    "Owned P&L-critical product lines, maintaining zero trading outages during market hours while processing 1M+ daily transactions",
+    "Mentored junior and mid-level engineers through structured code reviews, pair programming, and architecture design sessions",
+    "Drove cross-functional collaboration with product, design, and backend teams to deliver features used by millions of users",
   ],
   
   // Job Info (for structured data)

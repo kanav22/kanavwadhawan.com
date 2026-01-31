@@ -14,9 +14,15 @@ export interface Project {
   // Company info
   company: string
   companyLogo?: string // Path to logo, e.g., "/logos/weavr.svg"
+  // Platform info
+  platform: ("Android" | "iOS" | "React Native" | "Cross-Platform")[]
   // App store links
   googlePlayUrl?: string
   appStoreUrl?: string
+  docsUrl?: string
+  // Availability (for enterprise/private apps)
+  isPrivate?: boolean
+  availabilityLabel?: string // e.g., "Enterprise app (link unavailable)"
   // Extended fields for detail page
   role: string
   duration: string
@@ -41,6 +47,10 @@ export const projects: Project[] = [
     tags: ["Mobile", "SDK", "FinTech"],
     stack: ["Kotlin", "React Native", "TypeScript", "REST APIs"],
     featured: true,
+    platform: ["Android", "React Native"],
+    docsUrl: "https://docs.weavr.io",
+    isPrivate: true,
+    availabilityLabel: "B2B SDK (not on app stores)",
     role: "Senior Mobile Engineer",
     duration: "2024 - Present",
     team: "Cross-functional team of 8 engineers",
@@ -73,6 +83,9 @@ export const projects: Project[] = [
     tags: ["Mobile", "Payments", "FinTech"],
     stack: ["Android", "Kotlin", "MVVM", "Firebase"],
     featured: true,
+    platform: ["Android", "iOS"],
+    isPrivate: true,
+    availabilityLabel: "UK-only app (discontinued)",
     role: "Mobile Engineering Manager",
     duration: "2021 - 2024",
     team: "Global team of 10 mobile engineers",
@@ -99,6 +112,7 @@ export const projects: Project[] = [
     company: "Angel One",
     companyLogo: "/logos/angelone.svg",
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.msf.angelbrokingapp",
+    appStoreUrl: "https://apps.apple.com/in/app/angel-one-stocks-mutual-funds/id1143318439",
     description: "Real-time stock trading platform serving millions of retail investors in India.",
     longDescription: "Led the mobile engineering team responsible for the core trading experience, including real-time market data, order execution, and portfolio management features. The platform handles millions of transactions daily during peak market hours.",
     impact: "Processed 1M+ daily transactions",
@@ -106,6 +120,7 @@ export const projects: Project[] = [
     tags: ["Mobile", "Trading", "FinTech"],
     stack: ["Android", "Kotlin", "WebSocket", "Clean Architecture"],
     featured: true,
+    platform: ["Android", "iOS"],
     role: "Senior Mobile Engineering Manager",
     duration: "2020 - 2021",
     team: "Team of engineering managers and 25+ engineers",
@@ -132,6 +147,7 @@ export const projects: Project[] = [
     company: "INDmoney",
     companyLogo: "/logos/indmoney.svg",
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.ind.money",
+    appStoreUrl: "https://apps.apple.com/in/app/indmoney-mutual-funds-stocks/id1377209178",
     description: "All-in-one personal finance app for tracking investments, expenses, and net worth.",
     longDescription: "Architected and led development of the Android application from ground up, implementing module-based architecture for scalability and comprehensive automated testing. The app aggregates financial data from multiple sources to provide unified wealth tracking.",
     impact: "Grew to 2M+ downloads with 4.5★ rating",
@@ -139,6 +155,7 @@ export const projects: Project[] = [
     tags: ["Mobile", "Personal Finance", "FinTech"],
     stack: ["Android", "Kotlin", "Room", "Retrofit"],
     featured: false,
+    platform: ["Android", "iOS"],
     role: "Lead Android Developer",
     duration: "2019 - 2020",
     team: "Android team of 5 engineers",
@@ -171,6 +188,9 @@ export const projects: Project[] = [
     tags: ["Mobile", "Healthcare", "Enterprise"],
     stack: ["Android", "Java", "REST APIs", "SQLite"],
     featured: false,
+    platform: ["Android"],
+    isPrivate: true,
+    availabilityLabel: "Enterprise app (internal release)",
     role: "Senior Android Developer",
     duration: "2013 - 2018",
     team: "Enterprise mobile team at Infosys",
@@ -203,6 +223,9 @@ export const projects: Project[] = [
     tags: ["DevOps", "Automation", "Mobile"],
     stack: ["Jenkins", "Fastlane", "CircleCI", "Gradle"],
     featured: false,
+    platform: ["Android", "iOS"],
+    isPrivate: true,
+    availabilityLabel: "Internal tooling",
     role: "Mobile Engineering Manager",
     duration: "2021 - 2024",
     challenges: [
