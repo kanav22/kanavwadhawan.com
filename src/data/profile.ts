@@ -13,6 +13,9 @@ export interface Profile {
   // About (short bio for homepage)
   about: string
   
+  // Proof chips (social proof items for hero section)
+  proofChips: string[]
+  
   // Social Links
   linkedin: string
   github: string
@@ -60,15 +63,23 @@ export const profile: Profile = {
   // About (short bio for homepage - 3-5 lines)
   about: "I'm a hands-on engineering leader passionate about mobile technology. With over a decade of experience shipping Android, iOS, and React Native apps, I've led teams at fintech companies like Paytm and Angel One, and built SDKs used by thousands of developers. I thrive at the intersection of technical excellence and product thinking.",
   
-  // Social Links - UPDATE THESE WITH YOUR ACTUAL URLS
-  linkedin: "https://www.linkedin.com/in/kanav-wadhawan",
+  // Proof chips (social proof shown in hero section)
+  proofChips: [
+    "1M+ daily transactions",
+    "2M+ app downloads",
+    "10+ years experience",
+    "500K+ users served",
+  ],
+  
+  // Social Links
+  linkedin: "https://www.linkedin.com/in/kanav-wadhawan/",
   github: "https://github.com/kanav22",
-  twitter: undefined, // Add your Twitter/X handle if you have one: "https://twitter.com/yourhandle"
+  twitter: undefined,
   
   // Website - Using www subdomain as canonical
   website: "https://www.kanavwadhawan.com",
   resumeUrl: "/resume.pdf",
-  resumeLastUpdated: "January 2026", // UPDATE THIS when you update your resume
+  resumeLastUpdated: "January 2026",
   ogImage: "/og.png",
   
   // SEO & Bio

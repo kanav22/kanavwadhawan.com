@@ -47,6 +47,18 @@ export default function HomePage() {
               {profile.tagline}
             </p>
             
+            {/* Proof Chips - Social proof items */}
+            <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
+              {profile.proofChips.map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-flex items-center rounded-full bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground sm:text-sm"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+            
             {/* CTAs - Stack on mobile, row on sm+ */}
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
               <Button asChild size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
@@ -60,14 +72,15 @@ export default function HomePage() {
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="View GitHub profile"
                 >
-                  <Github className="mr-2 h-5 w-5" />
+                  <Github className="mr-2 h-5 w-5" aria-hidden="true" />
                   GitHub
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
                 <a href={profile.resumeUrl} download>
-                  <Download className="mr-2 h-5 w-5" />
+                  <Download className="mr-2 h-5 w-5" aria-hidden="true" />
                   Resume
                 </a>
               </Button>
@@ -102,7 +115,7 @@ export default function HomePage() {
             <Button asChild variant="ghost" size="sm" className="hidden sm:flex shrink-0 gap-1.5 h-10">
               <Link href="/projects">
                 View all
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
           </div>
@@ -119,7 +132,7 @@ export default function HomePage() {
             <Button asChild variant="outline" className="w-full h-12 rounded-lg text-base">
               <Link href="/projects">
                 View all projects
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Link>
             </Button>
           </div>
@@ -232,7 +245,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="h-12 w-full rounded-lg px-6 text-base sm:w-auto">
                 <a href={`mailto:${profile.email}`}>
-                  <Mail className="mr-2 h-5 w-5" />
+                  <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
                   Send me an email
                 </a>
               </Button>
@@ -241,8 +254,9 @@ export default function HomePage() {
                   href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="View LinkedIn profile"
                 >
-                  <Linkedin className="mr-2 h-5 w-5" />
+                  <Linkedin className="mr-2 h-5 w-5" aria-hidden="true" />
                   LinkedIn
                 </a>
               </Button>
