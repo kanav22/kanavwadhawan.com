@@ -81,7 +81,7 @@ export const profile: Profile = {
   
   // Website - Using www subdomain as canonical
   website: "https://www.kanavwadhawan.com",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Kanav_wadhawan_resume.pdf",
   resumeLastUpdated: "January 2026",
   ogImage: "/og.png",
   
