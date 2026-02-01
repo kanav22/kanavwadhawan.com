@@ -23,6 +23,8 @@ export interface Profile {
   // About (short bio for homepage)
   about: string
   
+  /** One-sentence hero differentiator (secure, offline-first, performance-budgeted). Shown below role. */
+  heroDifferentiator?: string
   // Proof chips (social proof items for hero section)
   proofChips: string[]
   
@@ -57,6 +59,8 @@ export interface Profile {
   
   // Expertise categories (professional grouping)
   expertiseCategories: ExpertiseCategory[]
+  /** Capabilities section: 4 groups with badges + Show more. Replaces Skills as leadership-focused. */
+  capabilityCategories: { title: string; items: string[] }[]
   
   // Job Info (for structured data)
   jobTitle: string
@@ -87,6 +91,7 @@ export const profile: Profile = {
   // About (short bio for homepage - 3-5 lines)
   about: "I'm a hands-on engineering leader passionate about mobile technology. With over a decade of experience shipping Android, iOS, and React Native apps, I've led teams at fintech companies like Paytm and Angel One, and built SDKs used by thousands of developers. I drive cross-functional collaboration with Product and Design, focus on engineering process optimization, and mentor engineers from junior to senior level. I thrive at the intersection of technical excellence and product thinking.",
   
+  heroDifferentiator: "Secure, offline-first, performance-budgeted systems—built and led at scale.",
   // Proof chips (social proof shown in hero section)
   proofChips: [
     "10M+ users impacted",
@@ -164,6 +169,26 @@ export const profile: Profile = {
         { name: "CI/CD Pipelines", value: "shorter release cycles and quality gates" },
         { name: "Product Strategy", value: "alignment and impact-focused roadmaps" },
       ],
+    },
+  ],
+
+  // Capabilities (4 groups for "Capabilities" section — leadership-focused)
+  capabilityCategories: [
+    {
+      title: "Mobile Architecture & Platform",
+      items: ["Jetpack Compose", "Modularization", "MVI/MVVM", "Kotlin Coroutines/Flow", "SDKs", "Clean Architecture", "State management", "Native bridges"],
+    },
+    {
+      title: "Reliability & Performance Culture",
+      items: ["Cold start SLOs", "ANR monitoring", "Baseline profiles", "Profiling", "Observability", "Crash-free metrics", "Performance budgets", "Lazy init"],
+    },
+    {
+      title: "Fintech Security",
+      items: ["Keystore / Secure Enclave", "Biometrics", "Cert pinning", "PII redaction", "Token handling", "FLAG_SECURE", "Obfuscation", "Threat modeling"],
+    },
+    {
+      title: "Delivery & Quality",
+      items: ["CI/CD pipelines", "Release trains", "Feature flags", "Test automation", "Staged rollouts", "Incident response", "Code review standards", "Experiments"],
     },
   ],
   

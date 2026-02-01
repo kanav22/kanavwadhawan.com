@@ -20,8 +20,8 @@ import { profile } from "@/data/profile"
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/blueprints", label: "Blueprints", primary: true },
   { href: "/notes", label: "Engineering Notes" },
-  { href: "/blueprints", label: "Blueprints" },
   { href: "/manifesto", label: "Manifesto" },
   { href: "/projects", label: "Projects" },
   { href: "/resume", label: "Resume" },
@@ -60,7 +60,8 @@ export function Navbar() {
                   "relative min-h-[48px] flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                   pathname === link.href
                     ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                  "primary" in link && link.primary && "font-semibold text-foreground/90 hover:text-foreground"
                 )}
               >
                 {link.label}

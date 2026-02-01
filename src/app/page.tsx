@@ -8,7 +8,8 @@ import { SectionHeading } from "@/components/section-heading"
 import { CaseStudyCard } from "@/components/case-study-card"
 import { ExperienceCard } from "@/components/experience-card"
 import { LeadershipSection } from "@/components/leadership-section"
-import { ExpertiseSection } from "@/components/expertise-section"
+import { CapabilitiesSection } from "@/components/capabilities-section"
+import { BlueprintsPreviewCard } from "@/components/blueprints-preview-card"
 import { FeaturedTechnicalDeepDive } from "@/components/featured-technical-deep-dive"
 import { ImpactStats } from "@/components/impact-stats"
 import { HomePageJsonLd } from "@/components/json-ld"
@@ -31,8 +32,8 @@ export default function HomePage() {
       {/* JSON-LD Structured Data */}
       <HomePageJsonLd />
 
-      {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28">
+      {/* Hero Section — Role (H1), Differentiator, Proof chips, CTA hierarchy */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <Container>
           <div className="flex flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16">
             {profile.profilePhoto && (
@@ -49,68 +50,67 @@ export default function HomePage() {
               </div>
             )}
             <div className="max-w-2xl min-w-0">
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-                {profile.name}
-              </h1>
-              <p className="mt-3 text-base font-medium text-foreground/80 sm:mt-4 sm:text-lg md:text-xl">
+              <p className="text-sm font-medium text-muted-foreground sm:text-base">{profile.name}</p>
+              <h1 className="mt-1 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
                 {profile.title}
+              </h1>
+              <p className="mt-3 text-base leading-snug text-muted-foreground sm:mt-4 sm:text-lg">
+                {profile.heroDifferentiator ?? profile.tagline}
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:mt-6 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
-                {profile.tagline}
-              </p>
-              
-              {/* CTAs - Stack on mobile, row on sm+ */}
-              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
-                <Button asChild size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
-                  <a href={`mailto:${profile.email}`}>
-                    <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Get in touch
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
-                  <a
-                    href={profile.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View Architectural Samples & Open Source Contributions"
-                  >
-                    <Github className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Architectural Samples & Open Source
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
-                  <a href={profile.resumeUrl} download>
-                    <Download className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Resume
-                  </a>
-                </Button>
-              </div>
-
-              {/* Proof Chips - Social proof items */}
-              <div className="mt-8 flex flex-wrap gap-2 sm:mt-10 sm:gap-3">
+              <div className="mt-4 flex flex-wrap gap-2 sm:mt-5 sm:gap-3">
                 {profile.proofChips.map((chip) => (
                   <span
                     key={chip}
-                    className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary transition-colors sm:text-sm"
+                    className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm"
                   >
                     {chip}
                   </span>
                 ))}
+              </div>
+              {/* Primary CTA: Blueprints */}
+              <div className="mt-6 sm:mt-8">
+                <Button asChild size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
+                  <Link href="/blueprints" className="gap-2">
+                    Explore Architecture Blueprints
+                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                  </Link>
+                </Button>
+                <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+                  Click nodes to see trade-offs, failure modes, and how I test.
+                </p>
+              </div>
+              {/* Secondary CTAs */}
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
+                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
+                  <Link href="/projects">View Projects</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
+                  <Link href="/notes">Read Engineering Notes</Link>
+                </Button>
+                <Button asChild variant="ghost" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
+                  <a href={profile.resumeUrl} download aria-label="Download resume">
+                    <Download className="mr-2 h-5 w-5" aria-hidden="true" />
+                    Resume
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
+      {/* Blueprints preview — flagship */}
+      <BlueprintsPreviewCard />
+
       {/* Impact Stats */}
-      <section className="border-t border-border/40 py-12 sm:py-16 md:py-20">
+      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20">
         <Container>
           <ImpactStats stats={profile.impactStats} />
         </Container>
       </section>
 
       {/* About Section */}
-      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20">
+      <section className="border-t border-border/40 bg-muted/30 py-12 md:py-16 lg:py-20">
         <Container>
           <div className={profile.aboutImage ? "flex flex-col gap-8 md:flex-row md:items-start md:gap-12" : "max-w-3xl"}>
             {profile.aboutImage && (
@@ -137,13 +137,13 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Case Studies */}
-      <section className="border-t border-border/40 py-12 sm:py-16 md:py-20 lg:py-24">
+      {/* Case Studies / Projects */}
+      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20">
         <Container>
           <div className="mb-8 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
-              title="Case Studies"
-              subtitle="Key roles: architectural challenges, leadership impact, and technical outcomes"
+              title="Projects"
+              subtitle="Decision narrative: architectural choices, outcomes, and impact"
               className="mb-0"
             />
             <Button asChild variant="ghost" size="sm" className="hidden h-10 shrink-0 gap-1.5 sm:flex">
@@ -166,20 +166,10 @@ export default function HomePage() {
           </div>
           
           <div className="mt-8 sm:hidden">
-            <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base">
+            <Button asChild variant="outline" className="h-12 w-full rounded-lg text-base min-h-[48px]">
               <Link href="/projects">
-                View all case studies
+                View all projects
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-              </Link>
-            </Button>
-          </div>
-
-          {/* Architecture Blueprints CTA */}
-          <div className="mt-10 sm:mt-12">
-            <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
-              <Link href="/blueprints" className="gap-2">
-                <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                Explore my Architecture Blueprints
               </Link>
             </Button>
           </div>
@@ -189,8 +179,8 @@ export default function HomePage() {
       {/* Featured Technical Deep Dive — Architecture showcase */}
       <FeaturedTechnicalDeepDive />
 
-      {/* Leadership Section - Key for EM positioning */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      {/* Leadership Section */}
+      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20">
         <Container>
           <SectionHeading
             title="Leadership Highlights"
@@ -201,7 +191,7 @@ export default function HomePage() {
       </section>
 
       {/* Experience */}
-      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="border-t border-border/40 bg-muted/30 py-12 md:py-16 lg:py-20">
         <Container>
           <SectionHeading
             title="Experience"
@@ -215,19 +205,37 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Expertise */}
-      <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20 lg:py-24">
+      {/* Capabilities */}
+      <section className="border-t border-border/40 bg-muted/30 py-12 md:py-16 lg:py-20">
         <Container>
           <SectionHeading
-            title="Expertise"
-            subtitle="Core architecture, fintech security, and leadership"
+            title="Capabilities"
+            subtitle="Mobile architecture, reliability, fintech security, and delivery"
           />
-          <ExpertiseSection categories={profile.expertiseCategories} />
+          <CapabilitiesSection categories={profile.capabilityCategories} />
+        </Container>
+      </section>
+
+      {/* Engineering Notes preview */}
+      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20" aria-labelledby="notes-preview-heading">
+        <Container>
+          <h2 id="notes-preview-heading" className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-3">
+            Engineering Notes
+          </h2>
+          <p className="mb-6 max-w-2xl text-sm text-muted-foreground sm:text-base">
+            Practical notes on mobile architecture, fintech reliability, performance culture, and engineering leadership.
+          </p>
+          <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] rounded-lg px-6 text-base">
+            <Link href="/notes" className="gap-2">
+              Read Engineering Notes
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
+          </Button>
         </Container>
       </section>
 
       {/* Contact CTA */}
-      <section id="contact" className="border-t border-border/40 bg-muted/30 py-16 sm:py-20 md:py-24 lg:py-32">
+      <section id="contact" className="border-t border-border/40 bg-muted/30 py-16 md:py-20 lg:py-24">
         <Container size="narrow">
           <div className="text-center">
             <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl">

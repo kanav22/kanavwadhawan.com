@@ -13,6 +13,12 @@ import {
   getNodeIdFromHash,
 } from "@/data/blueprints-flagship"
 
+export type RelatedNotesByNodeId = Record<string, { slug: string; title: string }[]>
+
+interface BlueprintsClientProps {
+  relatedNotesByNodeId?: RelatedNotesByNodeId
+}
+
 function useIsMobile() {
   return useSyncExternalStore(
     (onStoreChange) => {
@@ -28,13 +34,17 @@ function useIsMobile() {
   )
 }
 
-export function BlueprintsClient() {
+export function BlueprintsClient({ relatedNotesByNodeId = {} }: BlueprintsClientProps) {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(
-    () => (typeof window !== "undefined" ? getNodeIdFromHash(window.location.hash) : null)
+    () =>
+      typeof window !== "undefined"
+        ? getNodeIdFromHash(window.location.hash) ?? "auth-session"
+        : "auth-session"
   )
   const [searchQuery, setSearchQuery] = useState("")
   const isMobile = useIsMobile()
   const selectedNode = selectedNodeId ? getBlueprintNodeById(selectedNodeId) ?? null : null
+  const relatedNotes = selectedNodeId ? relatedNotesByNodeId[selectedNodeId] ?? [] : []
 
   useEffect(() => {
     const handler = () => {
@@ -68,12 +78,15 @@ export function BlueprintsClient() {
   return (
     <main className="min-w-0 overflow-x-hidden py-8 sm:py-12 md:py-16">
       <Container className="space-y-8 sm:space-y-10">
-        <header>
+        <header className="space-y-4">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             Architecture Blueprints
           </h1>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base md:mt-3">
+          <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
             How I design secure, scalable fintech mobile systems: offline-first, observability-driven, and performance-budgeted.
+          </p>
+          <p className="rounded-lg border border-border/50 bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
+            Click a node to see my preferred approach, trade-offs, failure modes, and testing strategy.
           </p>
         </header>
 
@@ -92,7 +105,7 @@ export function BlueprintsClient() {
             aria-label="Node details panel"
           >
             {!isMobile && (
-              <BlueprintPanel node={selectedNode} className="w-full" />
+              <BlueprintPanel node={selectedNode} relatedNotes={relatedNotes} className="w-full" />
             )}
           </aside>
         </div>
@@ -139,6 +152,7 @@ export function BlueprintsClient() {
           open={!!selectedNodeId}
           onOpenChange={(open) => !open && setSelectedNodeId(null)}
           node={selectedNode}
+          relatedNotes={relatedNotes}
           closeLabel="Close"
         />
       )}

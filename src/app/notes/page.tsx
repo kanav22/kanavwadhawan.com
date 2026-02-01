@@ -22,10 +22,45 @@ export default function NotesPage() {
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
             Practical notes on mobile architecture, fintech reliability, performance culture, and engineering leadership.
           </p>
+          <p className="mt-2 text-xs text-muted-foreground/90 italic">
+            Written as working notes, not tutorials.
+          </p>
         </header>
 
-        <ul className="space-y-4" aria-label="List of notes">
-          {sortedNotes.map((note) => (
+        {sortedNotes.length > 0 && (
+          <section aria-labelledby="start-here-heading" className="space-y-3">
+            <h2 id="start-here-heading" className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+              Start here
+            </h2>
+            <Link
+              href={`/notes/${sortedNotes[0].slug}`}
+              className="block min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl"
+            >
+              <Card className="border-primary/30 bg-primary/5 transition-all hover:border-primary/50 hover:bg-primary/10 overflow-hidden group">
+                <CardHeader className="pb-2">
+                  <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                    {sortedNotes[0].title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {sortedNotes[0].excerpt}
+                  </p>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    Read
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+          </section>
+        )}
+
+        <h2 id="all-notes-heading" className="sr-only">
+          All notes
+        </h2>
+        <ul className="space-y-4" aria-labelledby="all-notes-heading">
+          {sortedNotes.slice(1).map((note) => (
             <li key={note.slug}>
               <Link
                 href={`/notes/${note.slug}`}

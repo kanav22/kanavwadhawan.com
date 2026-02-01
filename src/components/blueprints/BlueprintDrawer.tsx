@@ -8,13 +8,14 @@ import {
   SheetClose,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { BlueprintPanel } from "./BlueprintPanel"
+import { BlueprintPanel, type RelatedNote } from "./BlueprintPanel"
 import type { BlueprintNode } from "@/data/blueprints-flagship"
 
 interface BlueprintDrawerProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   node: BlueprintNode | null
+  relatedNotes?: RelatedNote[]
   /** Accessible label for close button */
   closeLabel?: string
 }
@@ -27,6 +28,7 @@ export function BlueprintDrawer({
   open,
   onOpenChange,
   node,
+  relatedNotes = [],
   closeLabel = "Close",
 }: BlueprintDrawerProps) {
   return (
@@ -53,7 +55,7 @@ export function BlueprintDrawer({
           </SheetClose>
         </SheetHeader>
         <div id="blueprint-drawer-content" className="mt-4">
-          <BlueprintPanel node={node} />
+          <BlueprintPanel node={node} relatedNotes={relatedNotes} />
         </div>
       </SheetContent>
     </Sheet>

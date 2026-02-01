@@ -14,6 +14,8 @@ export interface Note {
   heroImage?: string
   /** OG image path for social sharing; if unset, note posts use generated PNG at /notes/[slug]/opengraph-image; use /og-notes for a shared Engineering Notes image. */
   ogImage?: string
+  /** Blueprint node IDs for "Related blueprint nodes" and Blueprints "Read related notes". */
+  blueprintNodeIds?: string[]
   /** One strong opening sentence for LinkedIn caption */
   linkedinHook?: string
   /** 2–3 short bullet takeaways for LinkedIn caption */
@@ -54,6 +56,7 @@ export const notes: Note[] = [
     ],
     whatIdDoDifferently:
       "I’d add a small “session health” ping (e.g. every N minutes) that validates the refresh token server-side and proactively refreshes before expiry, so we rarely hit the expiry edge at all.",
+    blueprintNodeIds: ["auth-session"],
   },
   {
     slug: "offline-first-sync-engines",
@@ -83,6 +86,7 @@ export const notes: Note[] = [
     ],
     whatIdDoDifferently:
       "I’d version the sync protocol and support at least one prior version so we can roll out server changes without breaking older app versions in the wild.",
+    blueprintNodeIds: ["offline-cache-sync"],
   },
   {
     slug: "performance-budgets-for-mobile-teams",
@@ -110,6 +114,7 @@ export const notes: Note[] = [
     ],
     whatIdDoDifferently:
       "I’d add a “performance review” gate in the release process: someone (or a bot) signs off that the release doesn’t regress SLOs, so it’s not only CI but also a human checkpoint for big launches.",
+    blueprintNodeIds: ["observability", "release-experimentation"],
   },
 ]
 
@@ -121,6 +126,13 @@ export function getNotesSortedByDate(): Note[] {
   return [...notes].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
+}
+
+/** Notes that reference a given blueprint node (for "Read related notes" on Blueprints). */
+export function getNotesByBlueprintNodeId(nodeId: string): { slug: string; title: string }[] {
+  return notes
+    .filter((n) => n.blueprintNodeIds?.includes(nodeId))
+    .map((n) => ({ slug: n.slug, title: n.title }))
 }
 
 /** Build LinkedIn share URL with canonical post URL */

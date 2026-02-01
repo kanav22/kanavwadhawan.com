@@ -24,6 +24,7 @@ import { JsonLd } from "@/components/json-ld"
 import { generatePageMetadata } from "@/lib/metadata"
 import { profile } from "@/data/profile"
 import { projects, getProjectBySlug, getNextProject, getPreviousProject } from "@/data/projects"
+import { getBlueprintNodeById } from "@/data/blueprints-flagship"
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -290,6 +291,36 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             )}
           </header>
 
+          {/* Decision & Outcome summary block */}
+          <Card className="mb-8 border-border/50 bg-muted/30 sm:mb-10" aria-labelledby="decision-outcome-heading">
+            <CardContent className="p-4 sm:p-6">
+              <h2 id="decision-outcome-heading" className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-5">
+                Decision & Outcome
+              </h2>
+              <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Role</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-foreground">{project.role}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Scope</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-foreground">{project.team ?? project.platform?.join(", ") ?? "—"}</dd>
+                </div>
+                <div className="sm:col-span-2">
+                  <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Decision</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-foreground">{project.decisionLine ?? project.challenges?.[0] ?? project.description}</dd>
+                </div>
+                <div className="sm:col-span-2 lg:col-span-4">
+                  <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Results</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-foreground">{project.impact}</dd>
+                  {project.results?.[0] && project.results[0] !== project.impact && (
+                    <p className="mt-1 text-sm text-muted-foreground">{project.results[0]}</p>
+                  )}
+                </div>
+              </dl>
+            </CardContent>
+          </Card>
+
           {/* Hero image - Responsive aspect ratio */}
           <div className="relative mb-10 aspect-video overflow-hidden rounded-lg border border-border/50 bg-muted sm:mb-12 sm:rounded-xl md:mb-16 shadow-sm">
             <Image
@@ -388,6 +419,32 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
           </section>
+
+          {/* Related blueprint nodes */}
+          {project.blueprintNodeIds && project.blueprintNodeIds.length > 0 && (
+            <section className="mb-10 sm:mb-12 md:mb-16" aria-labelledby="related-blueprints-heading">
+              <h2 id="related-blueprints-heading" className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-4">
+                Related blueprint nodes
+              </h2>
+              <p className="mb-3 text-sm text-muted-foreground">
+                See my approach, trade-offs, and testing strategy for these nodes on the Architecture Blueprints diagram.
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                {project.blueprintNodeIds.map((nodeId) => {
+                  const node = getBlueprintNodeById(nodeId)
+                  return node ? (
+                    <li key={nodeId}>
+                      <Button asChild variant="outline" size="sm" className="h-10 min-h-[44px] rounded-lg px-4 text-sm">
+                        <Link href={`/blueprints#${nodeId}`}>
+                          {node.label}
+                        </Link>
+                      </Button>
+                    </li>
+                  ) : null
+                })}
+              </ul>
+            </section>
+          )}
 
           {/* Navigation - Stack on mobile */}
           <nav className="flex flex-col gap-4 border-t border-border/50 pt-6 sm:flex-row sm:justify-between sm:pt-8" aria-label="Project navigation">

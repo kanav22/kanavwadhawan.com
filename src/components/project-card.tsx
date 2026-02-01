@@ -102,8 +102,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </CardHeader>
 
       <CardContent className="flex-1 space-y-2 px-4 pb-3 pt-0 sm:space-y-3 sm:px-5 sm:pb-4">
-        <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          {project.description}
+        <p className="text-xs leading-snug text-muted-foreground sm:text-sm line-clamp-2">
+          {project.decisionLine ?? project.challenges?.[0] ?? project.description}
         </p>
         <p className="text-xs font-medium text-foreground sm:text-sm">
           {project.impact}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { generatePageMetadata } from "@/lib/metadata"
 import { profile } from "@/data/profile"
+import { blueprintNodes } from "@/data/blueprints-flagship"
+import { getNotesByBlueprintNodeId } from "@/data/notes"
 import { BlueprintsClient } from "./BlueprintsClient"
 
 export const metadata: Metadata = generatePageMetadata({
@@ -10,5 +12,9 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default function BlueprintsPage() {
-  return <BlueprintsClient />
+  const relatedNotesByNodeId: Record<string, { slug: string; title: string }[]> = {}
+  for (const node of blueprintNodes) {
+    relatedNotesByNodeId[node.id] = getNotesByBlueprintNodeId(node.id)
+  }
+  return <BlueprintsClient relatedNotesByNodeId={relatedNotesByNodeId} />
 }

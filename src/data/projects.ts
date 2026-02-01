@@ -5,6 +5,8 @@ export interface Project {
   description: string
   longDescription: string
   impact: string
+  /** One sentence: major architectural/product decision owned (offline-first, auth, SDK, rollout). */
+  decisionLine?: string
   image: string
   tags: string[]
   stack: string[]
@@ -31,6 +33,8 @@ export interface Project {
   solutions: string[]
   results: string[]
   screenshots?: string[]
+  /** Blueprint node ids for "Related blueprint nodes" on detail page (e.g. auth, keystore, gateway). */
+  blueprintNodeIds?: string[]
 }
 
 export const projects: Project[] = [
@@ -43,7 +47,9 @@ export const projects: Project[] = [
     description: "Cross-platform SDK enabling seamless integration of financial products into mobile applications.",
     longDescription: "Developed a comprehensive SDK that allows third-party applications to integrate banking, payments, and financial management features. The SDK supports both Android and React Native platforms with a unified API, enabling fintech startups to launch compliant financial products in days instead of months.",
     impact: "Reduced client integration time from weeks to days",
+    decisionLine: "Owned unified API and secure storage design for cross-platform fintech SDK.",
     image: "/projects/weavr-sdk.svg",
+    blueprintNodeIds: ["api-gateway-networking", "secure-storage", "auth-session"],
     tags: ["Mobile", "SDK", "FinTech"],
     stack: ["Kotlin", "React Native", "TypeScript", "REST APIs"],
     featured: true,
@@ -79,6 +85,7 @@ export const projects: Project[] = [
     description: "Led mobile engineering for one of the UK's leading digital payment platforms.",
     longDescription: "Managed the complete mobile application lifecycle for Paytm's UK operations, including payment processing, account management, and financial services integration. Led a global team of engineers while maintaining hands-on involvement in architecture decisions and code reviews.",
     impact: "Served 500K+ active users with 99.9% uptime",
+    decisionLine: "Led modular architecture and CI/CD with staged rollouts for payment flows.",
     image: "/projects/paytm.svg",
     tags: ["Mobile", "Payments", "FinTech"],
     stack: ["Android", "Kotlin", "MVVM", "Firebase"],
@@ -87,6 +94,7 @@ export const projects: Project[] = [
     isPrivate: true,
     availabilityLabel: "UK-only app (discontinued)",
     role: "Mobile Engineering Manager",
+    blueprintNodeIds: ["payments-wallet", "api-gateway-networking", "observability"],
     duration: "2021 - 2024",
     team: "Global team of 10 mobile engineers",
     challenges: [
@@ -116,7 +124,9 @@ export const projects: Project[] = [
     description: "Real-time stock trading platform serving millions of retail investors in India.",
     longDescription: "Led the mobile engineering team responsible for the core trading experience, including real-time market data, order execution, and portfolio management features. The platform handles millions of transactions daily during peak market hours.",
     impact: "Processed 1M+ daily transactions",
+    decisionLine: "Owned real-time trading and offline-capable portfolio architecture.",
     image: "/projects/angel-one.svg",
+    blueprintNodeIds: ["offline-cache-sync", "api-gateway-networking", "observability"],
     tags: ["Mobile", "Trading", "FinTech"],
     stack: ["Android", "Kotlin", "WebSocket", "Clean Architecture"],
     featured: true,

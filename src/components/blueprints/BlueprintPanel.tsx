@@ -1,9 +1,11 @@
 "use client"
 
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import type { BlueprintNode, BlueprintNodeCategory } from "@/data/blueprints-flagship"
 import { cn } from "@/lib/utils"
+import { FileText } from "lucide-react"
 
 const categoryVariant: Record<BlueprintNodeCategory, "default" | "secondary" | "outline"> = {
   Security: "default",
@@ -13,8 +15,14 @@ const categoryVariant: Record<BlueprintNodeCategory, "default" | "secondary" | "
   Delivery: "outline",
 }
 
+export interface RelatedNote {
+  slug: string
+  title: string
+}
+
 interface BlueprintPanelProps {
   node: BlueprintNode | null
+  relatedNotes?: RelatedNote[]
   className?: string
 }
 
@@ -22,7 +30,7 @@ interface BlueprintPanelProps {
  * Details panel for a blueprint node: What it is, Preferred approach, Trade-offs, Failure modes, Testing strategy.
  * Sticky on desktop when used in a sidebar.
  */
-export function BlueprintPanel({ node, className }: BlueprintPanelProps) {
+export function BlueprintPanel({ node, relatedNotes = [], className }: BlueprintPanelProps) {
   if (!node) {
     return (
       <div
@@ -79,6 +87,26 @@ export function BlueprintPanel({ node, className }: BlueprintPanelProps) {
           <h3 className="font-medium text-foreground mb-1">Testing strategy</h3>
           <p className="leading-relaxed text-muted-foreground">{sections.testingStrategy}</p>
         </section>
+        {relatedNotes.length > 0 && (
+          <section aria-labelledby="related-notes-heading">
+            <h3 id="related-notes-heading" className="font-medium text-foreground mb-2 flex items-center gap-1.5">
+              <FileText className="h-4 w-4 text-muted-foreground" aria-hidden />
+              Read related notes
+            </h3>
+            <ul className="space-y-1.5">
+              {relatedNotes.map((note) => (
+                <li key={note.slug}>
+                  <Link
+                    href={`/notes/${note.slug}`}
+                    className="text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded px-1 -mx-1 min-h-[44px] inline-flex items-center"
+                  >
+                    {note.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </CardContent>
     </Card>
   )

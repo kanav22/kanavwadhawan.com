@@ -6,6 +6,7 @@ import { Container } from "@/components/container"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { NoteShareButtons } from "@/components/notes/NoteShareButtons"
+import { getBlueprintNodeById } from "@/data/blueprints-flagship"
 import { getNoteBySlug, getNotesSortedByDate } from "@/data/notes"
 import { generatePageMetadata } from "@/lib/metadata"
 import { ArrowLeft } from "lucide-react"
@@ -142,6 +143,29 @@ export default async function NotePage({ params }: NotePageProps) {
               </p>
             </section>
           </div>
+
+          {note.blueprintNodeIds && note.blueprintNodeIds.length > 0 && (
+            <section className="mt-8 rounded-xl border border-border/50 bg-muted/20 p-4 sm:p-5" aria-labelledby="related-blueprints-heading">
+              <h2 id="related-blueprints-heading" className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                Related blueprint nodes
+              </h2>
+              <ul className="flex flex-wrap gap-2">
+                {note.blueprintNodeIds.map((nodeId) => {
+                  const node = getBlueprintNodeById(nodeId)
+                  return (
+                    <li key={nodeId}>
+                      <Link
+                        href={`/blueprints#${nodeId}`}
+                        className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        {node?.label ?? nodeId}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </section>
+          )}
         </article>
 
         <footer className="border-t border-border/40 pt-8">
