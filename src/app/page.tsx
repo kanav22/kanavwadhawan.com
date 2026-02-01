@@ -143,6 +143,16 @@ export default function HomePage() {
               </Link>
             </Button>
           </div>
+
+          {/* Architecture Blueprints CTA */}
+          <div className="mt-10 sm:mt-12">
+            <Button asChild variant="outline" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
+              <Link href="/blueprints" className="gap-2">
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                Explore my Architecture Blueprints
+              </Link>
+            </Button>
+          </div>
         </Container>
       </section>
 
