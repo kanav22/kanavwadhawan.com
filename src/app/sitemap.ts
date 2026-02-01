@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { profile } from "@/data/profile"
 import { projects } from "@/data/projects"
+import { getNotesSortedByDate } from "@/data/notes"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = profile.website // Uses www subdomain
@@ -67,7 +68,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/notes`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
   ]
+
+  // Engineering Notes (blog) pages
+  const notePages: MetadataRoute.Sitemap = getNotesSortedByDate().map((note) => ({
+    url: `${baseUrl}/notes/${note.slug}`,
+    lastModified: new Date(note.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
 
   // Dynamic project pages
   const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
@@ -77,5 +92,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...projectPages]
+  return [...staticPages, ...projectPages, ...notePages]
 }

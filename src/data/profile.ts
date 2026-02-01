@@ -37,6 +37,10 @@ export interface Profile {
   resumeUrl: string
   resumeLastUpdated: string // e.g., "January 2026"
   ogImage: string
+  /** Optional profile photo shown in hero (e.g. /profile.jpg). Add file to public/ and set path. */
+  profilePhoto?: string
+  /** Optional image for About section (e.g. /about-visual.svg). Shown beside about text when set. */
+  aboutImage?: string
   
   // SEO & Bio
   bio: string
@@ -102,7 +106,9 @@ export const profile: Profile = {
   resumeUrl: "/Kanav_wadhawan_resume.pdf",
   resumeLastUpdated: "January 2026",
   ogImage: "/og.png",
-  
+  profilePhoto: undefined, // e.g. "/profile.jpg" when you add a photo to public/
+  aboutImage: undefined, // e.g. "/about-visual.svg" for About section
+
   // SEO & Bio
   bio: "Mobile Engineering Leader and Fintech Architect with 10+ years of experience architecting scalable systems for millions of users. I excel in leading complex mobile development projects, driving architectural decisions, and building high-performing teams at companies like Paytm, Weavr, and Angel One.",
   shortBio: "Mobile Engineering Leader & Fintech Architect with 10+ years architecting scalable systems for millions of users. Specializing in Android, iOS, and React Native.",

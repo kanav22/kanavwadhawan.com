@@ -1,11 +1,25 @@
+import Image from "next/image"
 import { Container } from "@/components/container"
 import { ManifestoCard } from "@/components/manifesto/ManifestoCard"
 import { manifestoIntro, manifestoFeatures } from "@/data/manifesto"
 
 export default function ManifestoPage() {
   return (
-    <main className="py-8 sm:py-12 md:py-16 lg:py-20">
+    <main className="min-w-0 overflow-x-hidden py-8 sm:py-12 md:py-16 lg:py-20">
       <Container size="narrow" className="space-y-10 sm:space-y-12">
+        <div className="relative overflow-hidden rounded-xl border border-border/50 bg-muted">
+          <div className="relative aspect-[3/1] w-full min-h-[200px] sm:min-h-[240px]">
+            <Image
+              src="/manifesto-hero.svg"
+              alt=""
+              fill
+              priority
+              unoptimized
+              className="object-cover object-left"
+              sizes="(max-width: 768px) 100vw, 720px"
+            />
+          </div>
+        </div>
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             Technical Manifesto

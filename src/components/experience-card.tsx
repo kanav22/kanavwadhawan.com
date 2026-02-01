@@ -21,19 +21,24 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       <CardHeader className="pb-3 sm:pb-4 sm:pl-7">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-3 min-w-0">
-            {/* Company Logo */}
-            {experience.companyLogo && (
+            {/* Company Logo or initial fallback */}
+            {experience.companyLogo ? (
               <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-muted sm:h-11 sm:w-11">
                 <Image
                   src={experience.companyLogo}
                   alt={`${experience.company} logo`}
                   fill
+                  unoptimized={experience.companyLogo.endsWith(".svg")}
                   className="object-contain p-1.5"
                   sizes="44px"
                 />
               </div>
+            ) : (
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold text-muted-foreground sm:h-11 sm:w-11">
+                {experience.company.charAt(0)}
+              </div>
             )}
-            
+
             <div className="space-y-0.5 sm:space-y-1 min-w-0">
               <h3 className="text-sm font-semibold leading-tight tracking-tight text-foreground sm:text-base">
                 {experience.role}

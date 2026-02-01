@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" fill="none">
+  <defs>
+    <linearGradient id="mh1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="50%" stop-color="#171717"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="mh2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#262626" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#404040" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#262626" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="320" fill="url(#mh1)"/>
+  <rect x="32" y="32" width="896" height="256" rx="16" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="48" y="80" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#737373">TECHNICAL MANIFESTO</text>
+  <text x="48" y="130" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="white">Reliable · Secure · Fast by design</text>
+  <text x="48" y="170" font-family="system-ui, sans-serif" font-size="14" fill="#a3a3a3">Architecture blueprints · Performance scorecards · Leadership · Security &amp; tech radar</text>
+  <rect x="48" y="200" width="120" height="8" rx="4" fill="#262626"/>
+  <rect x="48" y="216" width="200" height="8" rx="4" fill="#262626"/>
+  <rect x="48" y="232" width="160" height="8" rx="4" fill="#262626"/>
+  <rect x="480" y="80" width="400" height="180" rx="12" fill="#0a0a0a" stroke="#262626" stroke-width="1"/>
+  <circle cx="580" cy="140" r="24" fill="none" stroke="#404040" stroke-width="1"/>
+  <circle cx="700" cy="140" r="24" fill="none" stroke="#404040" stroke-width="1"/>
+  <circle cx="820" cy="140" r="24" fill="none" stroke="#404040" stroke-width="1"/>
+  <path d="M520 200 L860 200" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M520 240 L760 240" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="480" y="80" width="400" height="180" rx="12" fill="url(#mh2)"/>
+</svg>

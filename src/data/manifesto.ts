@@ -9,6 +9,8 @@ export interface ManifestoFeature {
   description: string
   href: string
   icon: "blueprints" | "performance" | "leadership" | "security"
+  /** Optional image path for card (e.g. /manifesto/blueprints.svg). Shown above content when set. */
+  image?: string
 }
 
 export const manifestoIntro = `I believe mobile systems that handle money and identity must be reliable, secure, and fast by design—not as an afterthought. As a Mobile Tech Leader & Fintech Architect, I focus on reliability and security first, a performance culture that measures what matters, scalable teams and process that ship predictably, and pragmatic architecture that enables change without rewrites. This Manifesto captures how I think about system design, performance, leadership, and fintech security.`

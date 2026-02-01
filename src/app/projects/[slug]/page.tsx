@@ -140,6 +140,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     src={project.companyLogo}
                     alt={`${project.company} logo`}
                     fill
+                    unoptimized={project.companyLogo.endsWith(".svg")}
                     className="object-contain p-2"
                     sizes="56px"
                   />
@@ -290,16 +291,39 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </header>
 
           {/* Hero image - Responsive aspect ratio */}
-          <div className="relative mb-10 aspect-video overflow-hidden rounded-lg bg-muted sm:mb-12 sm:rounded-xl md:mb-16">
+          <div className="relative mb-10 aspect-video overflow-hidden rounded-lg border border-border/50 bg-muted sm:mb-12 sm:rounded-xl md:mb-16 shadow-sm">
             <Image
               src={project.image}
               alt={project.title}
               fill
               className="object-cover"
               priority
+              unoptimized={project.image.endsWith(".svg")}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
             />
           </div>
+
+          {/* Screenshots gallery - when project has screenshots */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <section className="mb-10 sm:mb-12 md:mb-16">
+              <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-4">
+                Screenshots
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {project.screenshots.map((src, i) => (
+                  <div key={i} className="relative aspect-[9/16] overflow-hidden rounded-lg border border-border/50 bg-muted">
+                    <Image
+                      src={src}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Tech stack */}
           <section className="mb-10 sm:mb-12 md:mb-16">

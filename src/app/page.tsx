@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -33,7 +34,21 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28">
         <Container>
-          <div className="max-w-2xl">
+          <div className="flex flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16">
+            {profile.profilePhoto && (
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-muted shadow-md sm:h-28 sm:w-28 md:h-32 md:w-32">
+                <Image
+                  src={profile.profilePhoto}
+                  alt=""
+                  fill
+                  priority
+                  unoptimized={profile.profilePhoto.endsWith(".svg")}
+                  className="object-cover"
+                  sizes="(max-width: 768px) 112px, 128px"
+                />
+              </div>
+            )}
+            <div className="max-w-2xl min-w-0">
               <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
                 {profile.name}
               </h1>
@@ -83,6 +98,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
+          </div>
         </Container>
       </section>
 
@@ -96,13 +112,27 @@ export default function HomePage() {
       {/* About Section */}
       <section className="border-t border-border/40 bg-muted/30 py-12 sm:py-16 md:py-20">
         <Container>
-          <div className="max-w-3xl">
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-4">
-              About
-            </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
-              {profile.about}
-            </p>
+          <div className={profile.aboutImage ? "flex flex-col gap-8 md:flex-row md:items-start md:gap-12" : "max-w-3xl"}>
+            {profile.aboutImage && (
+              <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-xl border border-border/50 bg-muted md:h-56 md:w-80 md:max-w-sm">
+                <Image
+                  src={profile.aboutImage}
+                  alt=""
+                  fill
+                  unoptimized={profile.aboutImage.endsWith(".svg")}
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 320px"
+                />
+              </div>
+            )}
+            <div className={profile.aboutImage ? "min-w-0 flex-1" : "max-w-3xl"}>
+              <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-4">
+                About
+              </h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+                {profile.about}
+              </p>
+            </div>
           </div>
         </Container>
       </section>

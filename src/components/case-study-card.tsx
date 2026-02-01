@@ -27,13 +27,14 @@ export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps)
     <Card className="group flex flex-col overflow-hidden border-border/50 bg-card/50 transition-all duration-300 hover:border-border hover:bg-card hover:shadow-lg">
       {/* Header with image */}
       <Link href={`/projects/${project.slug}`} className="block min-h-[48px]">
-        <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-t-lg border-b border-border/50 bg-muted">
           <Image
             src={project.image}
             alt={project.title}
             fill
             priority={priority}
             loading={priority ? undefined : "lazy"}
+            unoptimized={project.image.endsWith(".svg")}
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
@@ -45,6 +46,7 @@ export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps)
                   src={project.companyLogo}
                   alt=""
                   fill
+                  unoptimized={project.companyLogo.endsWith(".svg")}
                   className="object-contain p-1"
                   sizes="36px"
                 />

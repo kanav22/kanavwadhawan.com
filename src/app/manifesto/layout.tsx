@@ -27,7 +27,7 @@ export default function ManifestoLayout({
           </Link>
         </Container>
       </header>
-      {children}
+      <div className="min-w-0 overflow-x-hidden">{children}</div>
     </>
   )
 }

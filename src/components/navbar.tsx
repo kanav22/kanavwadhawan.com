@@ -20,6 +20,7 @@ import { profile } from "@/data/profile"
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/notes", label: "Engineering Notes" },
   { href: "/blueprints", label: "Blueprints" },
   { href: "/manifesto", label: "Manifesto" },
   { href: "/projects", label: "Projects" },
