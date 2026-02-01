@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ArrowRight, Layers } from "lucide-react"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
 
@@ -23,8 +23,11 @@ export function BlueprintsPreviewCard() {
                     Architecture Blueprints
                   </h2>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  Interactive diagram of my standard fintech mobile ecosystem: App Shell, Offline Cache & Sync, Auth & Session, Biometric Bridge, Secure Storage, API Gateway, Risk Engine, Payments, Feature Flags, Observability, Push/Messaging, Release & CI/CD. Click a node to see my preferred approach, trade-offs, failure modes, and testing strategy.
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base line-clamp-3">
+                  Interactive diagram of my standard fintech mobile ecosystem: App Shell, Auth & Session, Offline Sync, API Gateway, Secure Storage, Observability, Release & CI/CD.
+                </p>
+                <p className="mt-2 text-xs font-medium text-muted-foreground/90 sm:text-sm">
+                  Shows how I design mobile systems that handle money and identity.
                 </p>
               </div>
               <div className="shrink-0">
@@ -37,11 +40,6 @@ export function BlueprintsPreviewCard() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="border-t border-border/50 bg-muted/30 px-5 py-3 sm:px-6 sm:py-4">
-            <p className="text-xs text-muted-foreground sm:text-sm">
-              Click nodes to see trade-offs, failure modes, and how I test.
-            </p>
-          </CardFooter>
         </Card>
       </Container>
     </section>

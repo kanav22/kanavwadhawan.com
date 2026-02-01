@@ -13,7 +13,46 @@ export interface ManifestoFeature {
   image?: string
 }
 
-export const manifestoIntro = `I believe mobile systems that handle money and identity must be reliable, secure, and fast by design—not as an afterthought. As a Mobile Tech Leader & Fintech Architect, I focus on reliability and security first, a performance culture that measures what matters, scalable teams and process that ship predictably, and pragmatic architecture that enables change without rewrites. This Manifesto captures how I think about system design, performance, leadership, and fintech security.`
+export const manifestoIntro = `Mobile systems that handle money and identity must be reliable, secure, and fast by design—not as an afterthought. This Manifesto captures how I think about system design, performance, leadership, and fintech security.`
+
+export interface ManifestoPrinciple {
+  id: string
+  title: string
+  body: string
+}
+
+export const manifestoPrinciples: ManifestoPrinciple[] = [
+  {
+    id: "reliability-first",
+    title: "Reliability first",
+    body: "Systems must degrade gracefully. Define SLOs (cold start, ANR, crash-free), measure them in CI, and treat regressions as release blockers.",
+  },
+  {
+    id: "security-by-design",
+    title: "Security by design",
+    body: "Keystore for secrets, cert pinning, PII redaction in logs and crash reports. Security non-negotiables are part of the definition of done.",
+  },
+  {
+    id: "performance-culture",
+    title: "Performance culture",
+    body: "Measure what matters. Baseline profiles, lazy init, and performance budgets so the critical path stays fast as features grow.",
+  },
+  {
+    id: "teams-that-ship",
+    title: "Teams that ship",
+    body: "Clear ownership, CI/CD that shortens release cycles, and process that enables predictability without bureaucracy.",
+  },
+  {
+    id: "architecture-that-evolves",
+    title: "Architecture that evolves",
+    body: "Pragmatic boundaries and modularization so we can change without rewrites. Prefer incremental improvement over big-bang refactors.",
+  },
+  {
+    id: "fintech-context",
+    title: "Fintech context",
+    body: "Money and identity demand extra care. Idempotency, reconciliation, and audit trails are not optional.",
+  },
+]
 
 export const manifestoFeatures: ManifestoFeature[] = [
   {

@@ -1,2 +1,6 @@
 export { NoteShareButtons } from "./NoteShareButtons"
 export { NoteHeroImage } from "./NoteHeroImage"
+export { FeaturedNoteCard } from "./FeaturedNoteCard"
+export { NoteCard } from "./NoteCard"
+export { NotesToolbar } from "./NotesToolbar"
+export { NotesListSection } from "./NotesListSection"

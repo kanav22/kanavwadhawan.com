@@ -22,8 +22,8 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/blueprints", label: "Blueprints", primary: true },
   { href: "/notes", label: "Engineering Notes" },
-  { href: "/manifesto", label: "Manifesto" },
   { href: "/projects", label: "Projects" },
+  { href: "/manifesto", label: "Manifesto", deEmphasize: true },
   { href: "/resume", label: "Resume" },
   { href: "/#contact", label: "Contact" },
 ]
@@ -61,7 +61,8 @@ export function Navbar() {
                   pathname === link.href
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",
-                  "primary" in link && link.primary && "font-semibold text-foreground/90 hover:text-foreground"
+                  "primary" in link && link.primary && "font-semibold text-foreground/90 hover:text-foreground underline decoration-primary/50 underline-offset-4",
+                  "deEmphasize" in link && link.deEmphasize && "text-muted-foreground/80 hover:text-muted-foreground"
                 )}
               >
                 {link.label}

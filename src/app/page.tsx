@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowRight, Download, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
 import { SectionHeading } from "@/components/section-heading"
@@ -33,9 +33,9 @@ export default function HomePage() {
       <HomePageJsonLd />
 
       {/* Hero Section — Role (H1), Differentiator, Proof chips, CTA hierarchy */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-14">
         <Container>
-          <div className="flex flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16">
+          <div className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-start md:gap-10 lg:gap-12">
             {profile.profilePhoto && (
               <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-muted shadow-md sm:h-28 sm:w-28 md:h-32 md:w-32">
                 <Image
@@ -57,11 +57,11 @@ export default function HomePage() {
               <p className="mt-3 text-base leading-snug text-muted-foreground sm:mt-4 sm:text-lg">
                 {profile.heroDifferentiator ?? profile.tagline}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2 sm:mt-5 sm:gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-3">
                 {profile.proofChips.map((chip) => (
                   <span
                     key={chip}
-                    className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm"
+                    className="inline-flex w-fit items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm"
                   >
                     {chip}
                   </span>
@@ -75,7 +75,7 @@ export default function HomePage() {
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
-                <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+                <p className="mt-2 text-xs text-muted-foreground/80 sm:text-sm">
                   Click nodes to see trade-offs, failure modes, and how I test.
                 </p>
               </div>
@@ -102,9 +102,15 @@ export default function HomePage() {
       {/* Blueprints preview — flagship */}
       <BlueprintsPreviewCard />
 
-      {/* Impact Stats */}
-      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20">
+      {/* Operating at scale */}
+      <section className="border-t border-border/40 py-12 md:py-16 lg:py-20" aria-labelledby="operating-at-scale-heading">
         <Container>
+          <h2 id="operating-at-scale-heading" className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:mb-3">
+            Operating at scale
+          </h2>
+          <p className="mb-6 max-w-xl text-sm text-muted-foreground sm:text-base">
+            Outcomes and signals from production systems and teams I&apos;ve led.
+          </p>
           <ImpactStats stats={profile.impactStats} />
         </Container>
       </section>

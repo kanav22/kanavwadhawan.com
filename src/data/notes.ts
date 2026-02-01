@@ -3,6 +3,7 @@
  * Edit posts here. For new posts, include linkedinHook + linkedinSummary for best caption.
  */
 
+import { getBlueprintNodeById } from "@/data/blueprints-flagship"
 import { siteConfig } from "@/lib/metadata"
 
 export interface Note {
@@ -133,6 +134,30 @@ export function getNotesByBlueprintNodeId(nodeId: string): { slug: string; title
   return notes
     .filter((n) => n.blueprintNodeIds?.includes(nodeId))
     .map((n) => ({ slug: n.slug, title: n.title }))
+}
+
+/** Estimated reading time in minutes (~200 wpm from tldr + architecture + failureModes + testingChecklist + whatIdDoDifferently). */
+export function getReadingTimeMinutes(note: Note): number {
+  const text = [
+    note.tldr,
+    note.architecture,
+    note.failureModes.join(" "),
+    note.testingChecklist.join(" "),
+    note.whatIdDoDifferently,
+  ].join(" ")
+  const words = text.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
+}
+
+/** Tags derived from blueprint node categories (e.g. Security, Reliability). */
+export function getNoteTags(note: Note): string[] {
+  if (!note.blueprintNodeIds?.length) return []
+  const cats = new Set<string>()
+  for (const id of note.blueprintNodeIds) {
+    const node = getBlueprintNodeById(id)
+    if (node?.category) cats.add(node.category)
+  }
+  return [...cats].sort()
 }
 
 /** Build LinkedIn share URL with canonical post URL */

@@ -17,6 +17,7 @@ interface CaseStudyCardProps {
  * Senior/lead positioning with structured sections.
  */
 export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps) {
+  const decisionLine = project.decisionLine ?? project.challenges?.[0] ?? project.description
   const architecturalChallenge = project.challenges?.[0] ?? project.description
   const leadershipImpact = project.team
     ? `${project.team}. ${project.results?.[0] ?? project.impact}`
@@ -68,29 +69,21 @@ export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps)
             {project.title}
           </h3>
         </Link>
-        <p className="text-xs text-muted-foreground">{project.company} · {project.duration}</p>
+        {decisionLine && (
+          <p className="text-xs font-medium text-muted-foreground mt-1 line-clamp-1">
+            {decisionLine}
+          </p>
+        )}
+        <p className="text-xs text-muted-foreground/90 mt-0.5">{project.company} · {project.duration}</p>
       </CardHeader>
 
-      <CardContent className="flex-1 space-y-4 px-4 pb-4 sm:px-5 sm:pb-5">
-        {/* Architectural Challenge */}
-        <div>
-          <div className="mb-1.5 flex items-center gap-2">
-            <Cpu className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              The Challenge
-            </span>
-          </div>
-          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
-            {architecturalChallenge}
-          </p>
-        </div>
-
-        {/* Leadership Impact */}
+      <CardContent className="flex-1 space-y-3 px-4 pb-4 sm:px-5 sm:pb-5">
+        {/* Leadership Impact — emphasized first */}
         {leadershipImpact && (
           <div>
-            <div className="mb-1.5 flex items-center gap-2">
-              <Users className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className="mb-1 flex items-center gap-2">
+              <Users className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-foreground/90">
                 Leadership Impact
               </span>
             </div>
@@ -99,6 +92,19 @@ export function CaseStudyCard({ project, priority = false }: CaseStudyCardProps)
             </p>
           </div>
         )}
+
+        {/* The Challenge */}
+        <div>
+          <div className="mb-1 flex items-center gap-2">
+            <Cpu className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              The Challenge
+            </span>
+          </div>
+          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
+            {architecturalChallenge}
+          </p>
+        </div>
 
         {/* Technical Stack */}
         <div>
