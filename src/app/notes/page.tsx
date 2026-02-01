@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { SafeImage } from "@/components/ui/safe-image"
+import { NoteHeroImage } from "@/components/notes/NoteHeroImage"
 import { Container } from "@/components/container"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -34,7 +34,7 @@ export default function NotesPage() {
                 <Card className="border-border/50 bg-card/50 transition-all hover:border-border hover:bg-card hover:shadow-md overflow-hidden group">
                   {(note.heroImage ?? note.ogImage) && (
                     <div className="relative aspect-[21/9] w-full overflow-hidden bg-muted rounded-t-xl">
-                      <SafeImage
+                      <NoteHeroImage
                         src={note.heroImage ?? note.ogImage ?? ""}
                         alt=""
                         fill

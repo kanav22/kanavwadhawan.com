@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { SafeImage } from "@/components/ui/safe-image"
+import { NoteHeroImage } from "@/components/notes/NoteHeroImage"
 import { notFound } from "next/navigation"
 import { Container } from "@/components/container"
 import { Badge } from "@/components/ui/badge"
@@ -60,7 +60,7 @@ export default async function NotePage({ params }: NotePageProps) {
         <article>
           {note.heroImage && (
             <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl border border-border/50 bg-muted mb-8 shadow-sm">
-              <SafeImage
+              <NoteHeroImage
                 src={note.heroImage}
                 alt=""
                 fill
