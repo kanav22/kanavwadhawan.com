@@ -203,7 +203,7 @@ export default function HomePage() {
             title="Experience"
             subtitle="My professional journey"
           />
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-8 sm:space-y-10 md:space-y-12">
             {experiences.map((experience) => (
               <ExperienceCard key={experience.id} experience={experience} />
             ))}

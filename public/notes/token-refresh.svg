@@ -12,7 +12,7 @@
   <rect width="840" height="360" fill="url(#tg1)"/>
   <rect x="24" y="24" width="792" height="312" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
   <text x="48" y="72" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#a3a3a3">TOKEN REFRESH</text>
-  <text x="48" y="110" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="white">Single-flight guard · Retry · Keystore</text>
+  <text x="48" y="110" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="white">Single-flight guard ï¿½ Retry ï¿½ Keystore</text>
   <rect x="48" y="132" width="140" height="6" rx="3" fill="#262626"/>
   <rect x="48" y="146" width="220" height="6" rx="3" fill="#262626"/>
   <rect x="48" y="160" width="180" height="6" rx="3" fill="#262626"/>
