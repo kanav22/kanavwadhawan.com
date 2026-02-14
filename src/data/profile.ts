@@ -108,7 +108,8 @@ export const profile: Profile = {
   
   // Website - Using www subdomain as canonical
   website: "https://www.kanavwadhawan.com",
-  resumeUrl: "/Kanav_wadhawan_resume.pdf",
+  /** Resume page URL (PDF is password-protected via /resume). */
+  resumeUrl: "/resume",
   resumeLastUpdated: "January 2026",
   ogImage: "/og.png",
   profilePhoto: undefined, // e.g. "/profile.jpg" when you add a photo to public/

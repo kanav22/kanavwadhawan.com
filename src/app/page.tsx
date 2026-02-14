@@ -88,10 +88,10 @@ export default function HomePage() {
                   <Link href="/notes">Read Engineering Notes</Link>
                 </Button>
                 <Button asChild variant="ghost" size="lg" className="h-12 min-h-[48px] w-full rounded-lg px-6 text-base sm:w-auto">
-                  <a href={profile.resumeUrl} download aria-label="Download resume">
+                  <Link href={profile.resumeUrl} aria-label="Resume (password-protected PDF)">
                     <Download className="mr-2 h-5 w-5" aria-hidden="true" />
                     Resume
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>

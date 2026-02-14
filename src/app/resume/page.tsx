@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Container } from "@/components/container"
 import { ProfilePageJsonLd, JsonLd } from "@/components/json-ld"
 import { SkillsSection } from "@/components/skills-section"
+import { ResumeAuthProvider, ResumeDownloadGate, ResumeDownloadLink } from "@/components/resume-download-gate"
 import { generatePageMetadata } from "@/lib/metadata"
 import { profile, skills } from "@/data/profile"
 import { experiences, education } from "@/data/experience"
@@ -40,6 +41,7 @@ export default function ResumePage() {
 
       <section className="py-8 sm:py-12 md:py-16 lg:py-20">
         <Container>
+          <ResumeAuthProvider>
           {/* Header - Stack on mobile */}
           <div className="flex flex-col gap-4 mb-10 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:mb-12 md:mb-16">
             <div>
@@ -54,12 +56,12 @@ export default function ResumePage() {
             {/* Action buttons - Stack on mobile */}
             <div className="flex flex-col gap-2 w-full sm:w-auto">
               <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
-                <Button asChild className="h-12 w-full rounded-lg px-4 text-base sm:h-10 sm:w-auto sm:text-sm">
-                  <a href={profile.resumeUrl} download>
+                <ResumeDownloadGate>
+                  <ResumeDownloadLink className="h-12 w-full rounded-lg px-4 text-base sm:h-10 sm:w-auto sm:text-sm">
                     <Download className="mr-2 h-5 w-5 sm:h-4 sm:w-4" />
                     Download PDF
-                  </a>
-                </Button>
+                  </ResumeDownloadLink>
+                </ResumeDownloadGate>
                 <Button asChild variant="outline" className="h-12 w-full rounded-lg px-4 text-base sm:h-10 sm:w-auto sm:text-sm">
                   <a
                     href={profile.linkedinUrl}
@@ -174,16 +176,17 @@ export default function ResumePage() {
             <p className="mt-1 text-xs text-muted-foreground sm:mt-2 sm:text-sm">
               Download my complete resume as a PDF
             </p>
-            <Button asChild className="mt-4 h-12 w-full rounded-lg px-5 text-base sm:mt-6 sm:h-10 sm:w-auto sm:text-sm">
-              <a href={profile.resumeUrl} download>
+            <div className="mt-4 sm:mt-6 flex justify-center">
+              <ResumeDownloadLink className="h-12 w-full rounded-lg px-5 text-base sm:h-10 sm:w-auto sm:text-sm">
                 <Download className="mr-2 h-5 w-5 sm:h-4 sm:w-4" />
                 Download Resume
-              </a>
-            </Button>
+              </ResumeDownloadLink>
+            </div>
             <p className="mt-3 text-xs text-muted-foreground">
               Last updated: {profile.resumeLastUpdated}
             </p>
           </div>
+          </ResumeAuthProvider>
         </Container>
       </section>
     </>
