@@ -110,7 +110,7 @@ export const profile: Profile = {
   website: "https://www.kanavwadhawan.com",
   /** Resume page URL (PDF is password-protected via /resume). */
   resumeUrl: "/resume",
-  resumeLastUpdated: "January 2026",
+  resumeLastUpdated: "February 2026",
   ogImage: "/og.png",
   profilePhoto: undefined, // e.g. "/profile.jpg" when you add a photo to public/
   aboutImage: undefined, // e.g. "/about-visual.svg" for About section
